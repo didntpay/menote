@@ -38,6 +38,11 @@ final class StatusBarController {
             .sink { [weak self] state in self?.updateButton(appState: state) }
             .store(in: &cancellables)
 
+        controller.$notesJustReady
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in self?.updateButton() }
+            .store(in: &cancellables)
+
         // Observe recorder state
         controller.recorder.$state
             .receive(on: RunLoop.main)
@@ -70,7 +75,7 @@ final class StatusBarController {
         let state = appState ?? controller.appState
         switch state {
         case .idle:
-            btn.title = "○"
+            btn.title = controller.notesJustReady ? "✓ notes ready" : "○"
             closeRecorderWindow()
         case .permissionsRequired:
             btn.title = "○"

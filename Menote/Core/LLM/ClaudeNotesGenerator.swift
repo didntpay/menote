@@ -95,6 +95,11 @@ struct ClaudeNotesGenerator: NotesGenerator {
 
         let inputData = try JSONSerialization.data(withJSONObject: input)
         let decoder = JSONDecoder()
-        return try decoder.decode(NotesData.self, from: inputData)
+        do {
+            return try decoder.decode(NotesData.self, from: inputData)
+        } catch {
+            let preview = String(data: inputData.prefix(300), encoding: .utf8) ?? ""
+            throw GeneratorError.invalidResponse("decode failed: \(error.localizedDescription) — input: \(preview)")
+        }
     }
 }

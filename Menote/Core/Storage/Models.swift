@@ -63,4 +63,24 @@ struct ActionItem: Codable, Identifiable {
     var due: String?
     var done: Bool = false
     var externalRef: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id, text, owner, due, done, externalRef
+    }
+
+    init(id: String = UUID().uuidString, text: String, owner: String? = nil, due: String? = nil, done: Bool = false, externalRef: String? = nil) {
+        self.id = id; self.text = text; self.owner = owner; self.due = due; self.done = done; self.externalRef = externalRef
+    }
+
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        // `id` and `done` use `try?` because we want a property-default fallback,
+        // not just "key missing" semantics — Claude's schema doesn't return them.
+        self.id          = (try? c.decode(String.self, forKey: .id)) ?? UUID().uuidString
+        self.done        = (try? c.decode(Bool.self,   forKey: .done)) ?? false
+        self.text        = try  c.decode(String.self, forKey: .text)
+        self.owner       = try  c.decodeIfPresent(String.self, forKey: .owner)
+        self.due         = try  c.decodeIfPresent(String.self, forKey: .due)
+        self.externalRef = try  c.decodeIfPresent(String.self, forKey: .externalRef)
+    }
 }

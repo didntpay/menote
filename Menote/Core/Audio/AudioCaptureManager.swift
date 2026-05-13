@@ -18,7 +18,7 @@ final class AudioCaptureManager: NSObject, ObservableObject {
     // MARK: - Lifecycle
 
     func startCapture(sessionDir: URL) throws {
-        let url = sessionDir.appendingPathComponent("audio.m4a")
+        let url = sessionDir.appendingPathComponent("mic.m4a")
         audioURL = url
         currentSessionDir = sessionDir
 

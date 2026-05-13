@@ -11,6 +11,15 @@ struct MainView: View {
             DetailPane(controller: controller)
         }
         .background(AppTheme.background)
+        .sheet(isPresented: Binding(
+            get: { controller.appState == .permissionsRequired },
+            set: { if !$0 { controller.resetToIdle() } }
+        )) {
+            PermissionsView(
+                onGrant: { controller.resetToIdle() },
+                onDismiss: { controller.resetToIdle() }
+            )
+        }
     }
 }
 
@@ -117,15 +126,33 @@ private struct StartButton: View {
                 .paperBorder(dashed: true)
 
             case .error(let msg):
-                HStack(spacing: 8) {
-                    Image(systemName: "exclamationmark.triangle")
-                        .foregroundColor(AppTheme.pauseYellow)
-                        .font(.system(size: 11))
-                    Text(msg)
-                        .font(AppTheme.monoSmall)
-                        .foregroundColor(AppTheme.textSecondary)
-                        .lineLimit(2)
-                    Spacer()
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack(alignment: .top, spacing: 8) {
+                        Image(systemName: "exclamationmark.triangle")
+                            .foregroundColor(AppTheme.pauseYellow)
+                            .font(.system(size: 11))
+                            .padding(.top, 2)
+                        Text(msg)
+                            .font(AppTheme.monoSmall)
+                            .foregroundColor(AppTheme.textSecondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                        Spacer()
+                    }
+                    HStack(spacing: 8) {
+                        if msg.contains("API key") {
+                            SettingsLink {
+                                Text("Open Settings")
+                                    .font(AppTheme.bodySmall.weight(.medium))
+                                    .foregroundColor(AppTheme.actionBlue)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                        Spacer()
+                        Button("Dismiss") { controller.resetToIdle() }
+                            .buttonStyle(.plain)
+                            .font(AppTheme.bodySmall)
+                            .foregroundColor(AppTheme.textTertiary)
+                    }
                 }
                 .padding(.horizontal, 12)
                 .padding(.vertical, 10)

@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import AVFoundation
 
 // Top-level coordinator. Owns sub-controllers and drives the generation pipeline.
 @MainActor
@@ -24,6 +25,7 @@ final class AppController: ObservableObject {
 
     @Published var appState: AppState = .idle
     @Published var recentMeetings: [MeetingRecord] = []
+    @Published var notesJustReady = false
 
     // Sub-controllers exposed so views can read/observe them directly.
     let recorder: RecorderController
@@ -31,6 +33,7 @@ final class AppController: ObservableObject {
 
     private let store: MeetingStore
     private var cancellables = Set<AnyCancellable>()
+    private var notesReadyResetTask: Task<Void, Never>?
 
     init() {
         let store = MeetingStore()
@@ -39,7 +42,9 @@ final class AppController: ObservableObject {
         self.notes = NotesController(store: store)
         self.recentMeetings = store.fetchRecent()
 
-        // Forward child controller changes so views observing AppController re-render.
+        // Forward only the controller-level changes (state transitions) so views
+        // observing AppController re-render on those. High-frequency meter updates
+        // are NOT forwarded — views that need them observe the managers directly.
         recorder.objectWillChange
             .sink { [weak self] _ in self?.objectWillChange.send() }
             .store(in: &cancellables)
@@ -50,7 +55,23 @@ final class AppController: ObservableObject {
 
     // MARK: - Recording actions (called by views / shortcuts)
 
+    var hasAPIKey: Bool {
+        !(KeychainManager.shared.apiKey ?? "").isEmpty
+    }
+
+    /// Returns the app from `.error` or `.permissionsRequired` back to `.idle`.
+    func resetToIdle() {
+        switch appState {
+        case .error, .permissionsRequired: appState = .idle
+        default: break
+        }
+    }
+
     func startRecording() {
+        guard hasAPIKey else {
+            appState = .error("No Anthropic API key — add one in Settings.")
+            return
+        }
         guard recorder.hasMicPermission() else {
             if AVAuthorizationStatus.notDetermined == AVCaptureDevice.authorizationStatus(for: .audio) {
                 recorder.requestMicPermission { granted in
@@ -75,12 +96,15 @@ final class AppController: ObservableObject {
     func resumeRecording() { recorder.resume() }
 
     func endRecording() {
-        guard let session = recorder.end() else {
-            appState = .error("No active recording session.")
-            return
+        appState = .generating(stage: "mixing audio", progress: 0.02)
+        Task {
+            guard let session = await recorder.end() else {
+                appState = .error("No active recording session.")
+                return
+            }
+            appState = .generating(stage: "transcribing", progress: 0.05)
+            await runGenerationPipeline(session: session)
         }
-        appState = .generating(stage: "transcribing", progress: 0.05)
-        Task { await runGenerationPipeline(session: session) }
     }
 
     func handleShortcut() {
@@ -123,6 +147,7 @@ final class AppController: ObservableObject {
             recentMeetings = store.fetchRecent()
             notes.open(record)
             appState = .idle
+            flashNotesReady()
 
             NotificationManager.shared.postNotesReady(
                 title: notesData.title,
@@ -133,7 +158,17 @@ final class AppController: ObservableObject {
             appState = .error(error.localizedDescription)
         }
     }
-}
 
-// AVFoundation import needed for authorizationStatus check above
-import AVFoundation
+    /// Sets `notesJustReady = true` for 3 seconds. Cancels any prior pending reset
+    /// so back-to-back recordings don't have the second reset clobbered by the first.
+    private func flashNotesReady() {
+        notesJustReady = true
+        notesReadyResetTask?.cancel()
+        notesReadyResetTask = Task { @MainActor in
+            try? await Task.sleep(nanoseconds: 3_000_000_000)
+            if !Task.isCancelled {
+                self.notesJustReady = false
+            }
+        }
+    }
+}

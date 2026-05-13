@@ -351,10 +351,11 @@ Granolap/
 ## Open items / future work
 
 ### MVP gaps (not yet implemented)
-- **System audio** (`SCStream`) — currently mic-only; `SCStream` needed to capture the other side of calls.
 - **WhisperKit transcription** — currently using `SFSpeechRecognizer` (network-assisted); WhisperKit (`small.en`) is the local-first target. Requires SPM dep + ~466MB model download on first launch.
-- **First-run permissions screen** — Flow 3 (mic + screen recording rows) not yet built; permissions requested inline today.
-- **`✓ notes ready` pill** — after generation the menu bar should briefly show "done" before returning to `○`; currently snaps straight to idle.
+
+### Intentional MVP divergences
+- **Pause behavior** — the plan (Flow 9) says pause stops *both* mic and system audio. Implementation pauses only mic; system audio continues recording during a pause. The mixer composes the (longer) system track against the (gap-containing) mic track; AVMutableComposition handles uneven track lengths. Revisit if user testing reveals confusion.
+- **System audio permission** — best-effort. If screen-recording permission is denied or revoked, the recorder window shows "system audio off — grant screen recording in System Settings" and continues mic-only.
 
 ### Post-MVP
 - **Code signing + notarization** — needed before sharing widely (requires $99/yr Apple Developer Program). Until then, peers right-click → Open to bypass Gatekeeper.
