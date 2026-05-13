@@ -18,13 +18,13 @@ targets:
     platform: macOS
     deploymentTarget: "14.0"
     sources:
-      - path: Granolap
+      - path: Menote
         excludes:
           - "Resources/Assets.xcassets"
     resources:
-      - path: Granolap/Resources/Assets.xcassets
+      - path: Menote/Resources/Assets.xcassets
     info:
-      path: Granolap/Info.plist
+      path: Menote/Info.plist
       properties:
         CFBundleDisplayName: Menote
         CFBundleShortVersionString: "1.0"
@@ -35,7 +35,7 @@ targets:
         NSUserNotificationAlertStyle: alert
         CFBundleIdentifier: com.menote.Menote
     entitlements:
-      path: Granolap/Granolap.entitlements
+      path: Menote/Menote.entitlements
     dependencies:
       - package: KeyboardShortcuts
         product: KeyboardShortcuts

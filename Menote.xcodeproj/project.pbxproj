@@ -7,60 +7,61 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02516CE7F0FAC39DCAB82853 /* MenoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8BDFFC8354A82371A935C9 /* MenoteApp.swift */; };
-		20EB09C02FC20D38251D66BE /* NotesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCBB543DBC7B79A08CC0C88 /* NotesController.swift */; };
-		211FFC2AF4623CEA5331752A /* ClaudeNotesGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB4A8B7B7B9515762A07610 /* ClaudeNotesGenerator.swift */; };
-		313C1DCB6FB79468039421B3 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E573E310118A2B380FFC939 /* AppTheme.swift */; };
-		346AA8237025D5EF01E7A4DA /* KeyboardShortcutNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AD42653B0D7F368F2B19E6 /* KeyboardShortcutNames.swift */; };
-		3D0E57E33E98CA16C79B3B20 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC4D15F02C5BF189042A4 /* NotesView.swift */; };
-		3F95D75311A5C47A00C35D5B /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB622C9A8A8DE7BE36337A2 /* StatusBarController.swift */; };
-		5A8D15ECFAB2ECE36C986EC9 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706B60674F4AD3BA4B800A30 /* KeychainManager.swift */; };
-		5ED4792ED7D0904A9C0C9BD6 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4F4429EACB6F31A9B4B067 /* AppController.swift */; };
-		6881CCBC65107C8181722182 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A2DDBC67B8794BB581E513 /* Models.swift */; };
-		6BD816A6FA5B41BD24BBD5BD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93B1FB79CF7528890415585 /* SettingsView.swift */; };
-		7032F9FA72C4688DDECD63AB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1F59602B904DF10E4F31CB /* MainView.swift */; };
-		74352ACAAE3F6FF286670D6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC327E2E5BF621CCC907F95 /* AppDelegate.swift */; };
-		8F6D613ACD03A289306CA484 /* WhisperKitTranscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50884A40991166AEA2C8EE2 /* WhisperKitTranscriber.swift */; };
-		8FC2C60C2EC4BC9483F664CD /* RecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D302CC7D481C3E678185736 /* RecorderView.swift */; };
-		9C18157DCFE677371B50E56E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF85E6E818BF735D279480A /* NotificationManager.swift */; };
-		9DAF86EAD11F7E4E2C5A7FA6 /* GenerationPillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF438471F3060AFC42F59D81 /* GenerationPillView.swift */; };
-		A673402F27E6A344B201FD57 /* MeetingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F5B8E5C0402B86992DBF4B /* MeetingStore.swift */; };
-		A72A053D2400E17E2DFFBA2F /* RecorderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F53EAC127E05C68D5062E /* RecorderController.swift */; };
+		03AB864B42A534997E2F75E2 /* MenoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FBEEE291922ED41412B237 /* MenoteApp.swift */; };
+		1BBA61DFCCA6FDE9D22246A2 /* KeyboardShortcutNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540D42C329579B09839520C3 /* KeyboardShortcutNames.swift */; };
+		1F89CAAFA76B6071DC5E1A04 /* NotesGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DCF2456A839DDF7941F2CF /* NotesGenerator.swift */; };
+		21A22FCB7961A67B7BFCB515 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060CFB3D984E8EEA046AC98A /* Models.swift */; };
+		26A349BB26840928E7FC7858 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF0CB53055B3F8E38830144 /* AppController.swift */; };
+		2955B8B9727DAD55FB8A16AE /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE19845F24D72FDF0DF59C0 /* MainView.swift */; };
+		4B5D9EFD60735FCBC5E30AD1 /* RecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6284B5D926791D39A046C50 /* RecorderView.swift */; };
+		608A3B165DAA85604CE46EE7 /* GenerationPillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A269A28C60237D8761BB655 /* GenerationPillView.swift */; };
+		6366D1834AA20CEED218F8A1 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79CEC90546610EC89F905E0 /* NotesView.swift */; };
+		640F8B6CEC848520851CF9D5 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834D92C6D9D405164C4EFABC /* AppTheme.swift */; };
+		67C4B2111F34F033A97126EF /* RecorderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32B69E9DFC6ACE447FAF429 /* RecorderController.swift */; };
+		6F1EA8723273F134B8590ADA /* PermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211587A9BE52BDE6E1DB496F /* PermissionsView.swift */; };
+		7211826B9C7D0E6E430DDB26 /* WhisperKitTranscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = F103AFF162403D04A83449BC /* WhisperKitTranscriber.swift */; };
+		7CE1D3C8F772891F9345C406 /* DropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFF0926D23CA539F74EEF4C /* DropdownView.swift */; };
+		85FDEBE535A558A460F8AF64 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E7D1931D4CAD2D511CA42B /* KeychainManager.swift */; };
+		8C3CAE1A07CDC7E3C2C3C367 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05429B6507B6C83F211438E /* NotificationManager.swift */; };
+		A780EE5CB33C7DDBC01B7B80 /* NotesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DB92AEF8644A674650EFC3 /* NotesController.swift */; };
 		A90A429C02D1B438FF9369A3 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = F2467BA4EDC5AE8EE61299AD /* KeyboardShortcuts */; };
-		AB9B22A4E6DD65F56B25D34C /* PermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA19C8885B0EEC13696A03E /* PermissionsView.swift */; };
-		AFF5ECCD802CBA1D1CB33D36 /* DropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB755B107DA0499F8C3CB58 /* DropdownView.swift */; };
-		B6A2BD35F42DBB4B274B6022 /* Transcriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D58C50884F1BADC03615B /* Transcriber.swift */; };
-		D390EB1D26939C969D6D4ED4 /* NotesGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD36E1D8D5299C7EF60475C /* NotesGenerator.swift */; };
-		E2258F68C0D22BCB64C79BDE /* AudioCaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118142FC4EBD2AE6A1B3189D /* AudioCaptureManager.swift */; };
+		AD1A1AF3F6B5E82EC752C67D /* AudioCaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E245F5F35933B6978C50E883 /* AudioCaptureManager.swift */; };
+		B058EB64ED3BBA00EAD74364 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D4D35D24E23ED5A83BA68E /* SettingsView.swift */; };
+		B2FE62F5CE616E93CB876442 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E381087BE0CCF3C68E82DDF /* AppDelegate.swift */; };
+		B8E8F1E25A2861F1909BBA47 /* ClaudeNotesGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435D10A6AD4773609FCB0648 /* ClaudeNotesGenerator.swift */; };
+		C3BB950A7EE346EFD9F1DCA6 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3946E58506D789F998BFCFC4 /* StatusBarController.swift */; };
+		D5E541D5B6AB9B7CCB4949C4 /* MeetingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A94EBA8497C211E307F4C37 /* MeetingStore.swift */; };
+		EC6F5A73A27D24CB1313AFA8 /* Transcriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9955E8A36884B8B212FE0EE2 /* Transcriber.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0236405130648F8897B596F3 /* Granolap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Granolap.entitlements; sourceTree = "<group>"; };
-		118142FC4EBD2AE6A1B3189D /* AudioCaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCaptureManager.swift; sourceTree = "<group>"; };
-		1E573E310118A2B380FFC939 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
-		283F53EAC127E05C68D5062E /* RecorderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderController.swift; sourceTree = "<group>"; };
-		2D302CC7D481C3E678185736 /* RecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderView.swift; sourceTree = "<group>"; };
-		3CCBB543DBC7B79A08CC0C88 /* NotesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesController.swift; sourceTree = "<group>"; };
-		3EC8814998DAADC0BC38A630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		47A2DDBC67B8794BB581E513 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		487EC4D15F02C5BF189042A4 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
-		4DF85E6E818BF735D279480A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		5AB755B107DA0499F8C3CB58 /* DropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownView.swift; sourceTree = "<group>"; };
-		706B60674F4AD3BA4B800A30 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
-		8CC327E2E5BF621CCC907F95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		935D58C50884F1BADC03615B /* Transcriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transcriber.swift; sourceTree = "<group>"; };
-		9A8BDFFC8354A82371A935C9 /* MenoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenoteApp.swift; sourceTree = "<group>"; };
-		9C4F4429EACB6F31A9B4B067 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
-		9DD36E1D8D5299C7EF60475C /* NotesGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesGenerator.swift; sourceTree = "<group>"; };
-		B2F5B8E5C0402B86992DBF4B /* MeetingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingStore.swift; sourceTree = "<group>"; };
-		BAA19C8885B0EEC13696A03E /* PermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsView.swift; sourceTree = "<group>"; };
-		BDB622C9A8A8DE7BE36337A2 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
-		D0AD42653B0D7F368F2B19E6 /* KeyboardShortcutNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcutNames.swift; sourceTree = "<group>"; };
-		D93B1FB79CF7528890415585 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		DE1F59602B904DF10E4F31CB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		EBB4A8B7B7B9515762A07610 /* ClaudeNotesGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeNotesGenerator.swift; sourceTree = "<group>"; };
-		EF438471F3060AFC42F59D81 /* GenerationPillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerationPillView.swift; sourceTree = "<group>"; };
-		F50884A40991166AEA2C8EE2 /* WhisperKitTranscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperKitTranscriber.swift; sourceTree = "<group>"; };
+		060CFB3D984E8EEA046AC98A /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		0A269A28C60237D8761BB655 /* GenerationPillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerationPillView.swift; sourceTree = "<group>"; };
+		0EE19845F24D72FDF0DF59C0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		1EF0CB53055B3F8E38830144 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		211587A9BE52BDE6E1DB496F /* PermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsView.swift; sourceTree = "<group>"; };
+		22702A994D151807C10F6B17 /* Granolap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Granolap.entitlements; sourceTree = "<group>"; };
+		3946E58506D789F998BFCFC4 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		3A94EBA8497C211E307F4C37 /* MeetingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingStore.swift; sourceTree = "<group>"; };
+		435D10A6AD4773609FCB0648 /* ClaudeNotesGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeNotesGenerator.swift; sourceTree = "<group>"; };
+		4E381087BE0CCF3C68E82DDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		540D42C329579B09839520C3 /* KeyboardShortcutNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcutNames.swift; sourceTree = "<group>"; };
+		59DB92AEF8644A674650EFC3 /* NotesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesController.swift; sourceTree = "<group>"; };
+		64FBEEE291922ED41412B237 /* MenoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenoteApp.swift; sourceTree = "<group>"; };
+		66D4D35D24E23ED5A83BA68E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		834D92C6D9D405164C4EFABC /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		9955E8A36884B8B212FE0EE2 /* Transcriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transcriber.swift; sourceTree = "<group>"; };
+		9BD6DB68F4C9513296824E06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A2E7D1931D4CAD2D511CA42B /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		A6284B5D926791D39A046C50 /* RecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderView.swift; sourceTree = "<group>"; };
+		B79CEC90546610EC89F905E0 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
+		C05429B6507B6C83F211438E /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		C32B69E9DFC6ACE447FAF429 /* RecorderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderController.swift; sourceTree = "<group>"; };
+		C9F09B870BE70576A9EA78F7 /* Menote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Menote.entitlements; sourceTree = "<group>"; };
+		E245F5F35933B6978C50E883 /* AudioCaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCaptureManager.swift; sourceTree = "<group>"; };
+		EEFF0926D23CA539F74EEF4C /* DropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownView.swift; sourceTree = "<group>"; };
+		F103AFF162403D04A83449BC /* WhisperKitTranscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperKitTranscriber.swift; sourceTree = "<group>"; };
+		F1DCF2456A839DDF7941F2CF /* NotesGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesGenerator.swift; sourceTree = "<group>"; };
 		FEA488378821AA12ACCE54F9 /* Menote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Menote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -76,79 +77,80 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		055E24DA53DFCBA53FCABD57 /* Notes */ = {
+		2523D52595D6441BD6C1C260 /* Transcription */ = {
 			isa = PBXGroup;
 			children = (
-				487EC4D15F02C5BF189042A4 /* NotesView.swift */,
+				9955E8A36884B8B212FE0EE2 /* Transcriber.swift */,
+				F103AFF162403D04A83449BC /* WhisperKitTranscriber.swift */,
 			);
-			path = Notes;
+			path = Transcription;
 			sourceTree = "<group>";
 		};
-		18D1556120C3BEA0900AB7C5 /* Settings */ = {
+		34B0E7BE40E836E18CC6B029 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
-				D93B1FB79CF7528890415585 /* SettingsView.swift */,
+				C05429B6507B6C83F211438E /* NotificationManager.swift */,
 			);
-			path = Settings;
+			path = Notifications;
 			sourceTree = "<group>";
 		};
-		19D61EF21A3EA5C9EFEBDCDD /* Generation */ = {
+		378EC361EE3B4E0C9A4C8199 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				EF438471F3060AFC42F59D81 /* GenerationPillView.swift */,
+				1EF0CB53055B3F8E38830144 /* AppController.swift */,
+				4E381087BE0CCF3C68E82DDF /* AppDelegate.swift */,
+				540D42C329579B09839520C3 /* KeyboardShortcutNames.swift */,
+				64FBEEE291922ED41412B237 /* MenoteApp.swift */,
+				59DB92AEF8644A674650EFC3 /* NotesController.swift */,
+				C32B69E9DFC6ACE447FAF429 /* RecorderController.swift */,
+				3946E58506D789F998BFCFC4 /* StatusBarController.swift */,
 			);
-			path = Generation;
+			path = App;
 			sourceTree = "<group>";
 		};
-		2139DAAAFC94621D117F98D3 /* Audio */ = {
+		3BDE4149A48C63C3BC5BE4A4 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				118142FC4EBD2AE6A1B3189D /* AudioCaptureManager.swift */,
-			);
-			path = Audio;
-			sourceTree = "<group>";
-		};
-		22560717C59EFB03A638C75C /* Permissions */ = {
-			isa = PBXGroup;
-			children = (
-				BAA19C8885B0EEC13696A03E /* PermissionsView.swift */,
-			);
-			path = Permissions;
-			sourceTree = "<group>";
-		};
-		226A5E5FEABF434A434B656A /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				2139DAAAFC94621D117F98D3 /* Audio */,
-				5EEA61EEF59B03D3B60DDB83 /* Keychain */,
-				C41B5949A91A4BDEC09D4F5C /* LLM */,
-				6502C2019C9CDDEC93D9E5E4 /* Notifications */,
-				3DBA532DD6AED23C11AA03CB /* Storage */,
-				AE238CA5ADF746AF32ECF1B3 /* Transcription */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		3DBA532DD6AED23C11AA03CB /* Storage */ = {
-			isa = PBXGroup;
-			children = (
-				B2F5B8E5C0402B86992DBF4B /* MeetingStore.swift */,
-				47A2DDBC67B8794BB581E513 /* Models.swift */,
+				3A94EBA8497C211E307F4C37 /* MeetingStore.swift */,
+				060CFB3D984E8EEA046AC98A /* Models.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
 		};
-		487AB7E8AB07EF9C60931326 /* Resources */ = {
+		3D189F6E740BC148A2C8D29B /* Dropdown */ = {
 			isa = PBXGroup;
 			children = (
+				EEFF0926D23CA539F74EEF4C /* DropdownView.swift */,
 			);
-			path = Resources;
+			path = Dropdown;
 			sourceTree = "<group>";
 		};
-		5EEA61EEF59B03D3B60DDB83 /* Keychain */ = {
+		3FF831D98BC182C71AC185EA /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				706B60674F4AD3BA4B800A30 /* KeychainManager.swift */,
+				ADEB5F5E3E43BD9107DB3E98 /* Audio */,
+				48CD889B6C842E27142656B1 /* Keychain */,
+				42DCA15E0C8BE35A92B2FAA9 /* LLM */,
+				34B0E7BE40E836E18CC6B029 /* Notifications */,
+				3BDE4149A48C63C3BC5BE4A4 /* Storage */,
+				2523D52595D6441BD6C1C260 /* Transcription */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		42DCA15E0C8BE35A92B2FAA9 /* LLM */ = {
+			isa = PBXGroup;
+			children = (
+				435D10A6AD4773609FCB0648 /* ClaudeNotesGenerator.swift */,
+				F1DCF2456A839DDF7941F2CF /* NotesGenerator.swift */,
+			);
+			path = LLM;
+			sourceTree = "<group>";
+		};
+		48CD889B6C842E27142656B1 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				A2E7D1931D4CAD2D511CA42B /* KeychainManager.swift */,
 			);
 			path = Keychain;
 			sourceTree = "<group>";
@@ -156,7 +158,7 @@
 		63AE94F15588139DEBF6833B = {
 			isa = PBXGroup;
 			children = (
-				86E4E30D38B99BA6B86112AC /* Granolap */,
+				79D5B5C805D74DEA35F10E67 /* Menote */,
 				6475951787CEFAAEEB31F37A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -169,104 +171,104 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6502C2019C9CDDEC93D9E5E4 /* Notifications */ = {
+		71D93318054BFD1B62DEA6CB /* Generation */ = {
 			isa = PBXGroup;
 			children = (
-				4DF85E6E818BF735D279480A /* NotificationManager.swift */,
+				0A269A28C60237D8761BB655 /* GenerationPillView.swift */,
 			);
-			path = Notifications;
+			path = Generation;
 			sourceTree = "<group>";
 		};
-		67D3755FB5F88B0317A30ACD /* Main */ = {
+		79D5B5C805D74DEA35F10E67 /* Menote */ = {
 			isa = PBXGroup;
 			children = (
-				DE1F59602B904DF10E4F31CB /* MainView.swift */,
+				378EC361EE3B4E0C9A4C8199 /* App */,
+				3FF831D98BC182C71AC185EA /* Core */,
+				A0A78586D4EBE0AC09DDF3AA /* Resources */,
+				B25EB6B96FBB48FCF49986A7 /* Theme */,
+				AE1270A27DF619869EF62E27 /* Views */,
+				22702A994D151807C10F6B17 /* Granolap.entitlements */,
+				9BD6DB68F4C9513296824E06 /* Info.plist */,
+				C9F09B870BE70576A9EA78F7 /* Menote.entitlements */,
 			);
-			path = Main;
+			path = Menote;
 			sourceTree = "<group>";
 		};
-		6BCEEB4385AB7D62D478AFEA /* Theme */ = {
+		A0A78586D4EBE0AC09DDF3AA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1E573E310118A2B380FFC939 /* AppTheme.swift */,
 			);
-			path = Theme;
+			path = Resources;
 			sourceTree = "<group>";
 		};
-		832F313AF3705F12ACF91193 /* App */ = {
+		A55E242A17669B1A6E0B83EB /* Permissions */ = {
 			isa = PBXGroup;
 			children = (
-				9C4F4429EACB6F31A9B4B067 /* AppController.swift */,
-				8CC327E2E5BF621CCC907F95 /* AppDelegate.swift */,
-				D0AD42653B0D7F368F2B19E6 /* KeyboardShortcutNames.swift */,
-				9A8BDFFC8354A82371A935C9 /* MenoteApp.swift */,
-				3CCBB543DBC7B79A08CC0C88 /* NotesController.swift */,
-				283F53EAC127E05C68D5062E /* RecorderController.swift */,
-				BDB622C9A8A8DE7BE36337A2 /* StatusBarController.swift */,
+				211587A9BE52BDE6E1DB496F /* PermissionsView.swift */,
 			);
-			path = App;
+			path = Permissions;
 			sourceTree = "<group>";
 		};
-		86E4E30D38B99BA6B86112AC /* Granolap */ = {
+		A9B19CA21B35875E73510460 /* Recorder */ = {
 			isa = PBXGroup;
 			children = (
-				832F313AF3705F12ACF91193 /* App */,
-				226A5E5FEABF434A434B656A /* Core */,
-				487AB7E8AB07EF9C60931326 /* Resources */,
-				6BCEEB4385AB7D62D478AFEA /* Theme */,
-				C9E86738A46EF12481556FE4 /* Views */,
-				0236405130648F8897B596F3 /* Granolap.entitlements */,
-				3EC8814998DAADC0BC38A630 /* Info.plist */,
-			);
-			path = Granolap;
-			sourceTree = "<group>";
-		};
-		8D06647BE11FAF4C192225E5 /* Recorder */ = {
-			isa = PBXGroup;
-			children = (
-				2D302CC7D481C3E678185736 /* RecorderView.swift */,
+				A6284B5D926791D39A046C50 /* RecorderView.swift */,
 			);
 			path = Recorder;
 			sourceTree = "<group>";
 		};
-		AE238CA5ADF746AF32ECF1B3 /* Transcription */ = {
+		ADEB5F5E3E43BD9107DB3E98 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				935D58C50884F1BADC03615B /* Transcriber.swift */,
-				F50884A40991166AEA2C8EE2 /* WhisperKitTranscriber.swift */,
+				E245F5F35933B6978C50E883 /* AudioCaptureManager.swift */,
 			);
-			path = Transcription;
+			path = Audio;
 			sourceTree = "<group>";
 		};
-		C41B5949A91A4BDEC09D4F5C /* LLM */ = {
+		AE1270A27DF619869EF62E27 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EBB4A8B7B7B9515762A07610 /* ClaudeNotesGenerator.swift */,
-				9DD36E1D8D5299C7EF60475C /* NotesGenerator.swift */,
-			);
-			path = LLM;
-			sourceTree = "<group>";
-		};
-		C9E86738A46EF12481556FE4 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				D2CAAAFB4D2B3D273E1604F1 /* Dropdown */,
-				19D61EF21A3EA5C9EFEBDCDD /* Generation */,
-				67D3755FB5F88B0317A30ACD /* Main */,
-				055E24DA53DFCBA53FCABD57 /* Notes */,
-				22560717C59EFB03A638C75C /* Permissions */,
-				8D06647BE11FAF4C192225E5 /* Recorder */,
-				18D1556120C3BEA0900AB7C5 /* Settings */,
+				3D189F6E740BC148A2C8D29B /* Dropdown */,
+				71D93318054BFD1B62DEA6CB /* Generation */,
+				AE22FEE75F1F6174BEB77232 /* Main */,
+				EAE0077BBE89CC13A6533930 /* Notes */,
+				A55E242A17669B1A6E0B83EB /* Permissions */,
+				A9B19CA21B35875E73510460 /* Recorder */,
+				D024B586D184342E6C52C179 /* Settings */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		D2CAAAFB4D2B3D273E1604F1 /* Dropdown */ = {
+		AE22FEE75F1F6174BEB77232 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				5AB755B107DA0499F8C3CB58 /* DropdownView.swift */,
+				0EE19845F24D72FDF0DF59C0 /* MainView.swift */,
 			);
-			path = Dropdown;
+			path = Main;
+			sourceTree = "<group>";
+		};
+		B25EB6B96FBB48FCF49986A7 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				834D92C6D9D405164C4EFABC /* AppTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		D024B586D184342E6C52C179 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				66D4D35D24E23ED5A83BA68E /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		EAE0077BBE89CC13A6533930 /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				B79CEC90546610EC89F905E0 /* NotesView.swift */,
+			);
+			path = Notes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,30 +334,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5ED4792ED7D0904A9C0C9BD6 /* AppController.swift in Sources */,
-				74352ACAAE3F6FF286670D6F /* AppDelegate.swift in Sources */,
-				313C1DCB6FB79468039421B3 /* AppTheme.swift in Sources */,
-				E2258F68C0D22BCB64C79BDE /* AudioCaptureManager.swift in Sources */,
-				211FFC2AF4623CEA5331752A /* ClaudeNotesGenerator.swift in Sources */,
-				AFF5ECCD802CBA1D1CB33D36 /* DropdownView.swift in Sources */,
-				9DAF86EAD11F7E4E2C5A7FA6 /* GenerationPillView.swift in Sources */,
-				346AA8237025D5EF01E7A4DA /* KeyboardShortcutNames.swift in Sources */,
-				5A8D15ECFAB2ECE36C986EC9 /* KeychainManager.swift in Sources */,
-				7032F9FA72C4688DDECD63AB /* MainView.swift in Sources */,
-				A673402F27E6A344B201FD57 /* MeetingStore.swift in Sources */,
-				02516CE7F0FAC39DCAB82853 /* MenoteApp.swift in Sources */,
-				6881CCBC65107C8181722182 /* Models.swift in Sources */,
-				20EB09C02FC20D38251D66BE /* NotesController.swift in Sources */,
-				D390EB1D26939C969D6D4ED4 /* NotesGenerator.swift in Sources */,
-				3D0E57E33E98CA16C79B3B20 /* NotesView.swift in Sources */,
-				9C18157DCFE677371B50E56E /* NotificationManager.swift in Sources */,
-				AB9B22A4E6DD65F56B25D34C /* PermissionsView.swift in Sources */,
-				A72A053D2400E17E2DFFBA2F /* RecorderController.swift in Sources */,
-				8FC2C60C2EC4BC9483F664CD /* RecorderView.swift in Sources */,
-				6BD816A6FA5B41BD24BBD5BD /* SettingsView.swift in Sources */,
-				3F95D75311A5C47A00C35D5B /* StatusBarController.swift in Sources */,
-				B6A2BD35F42DBB4B274B6022 /* Transcriber.swift in Sources */,
-				8F6D613ACD03A289306CA484 /* WhisperKitTranscriber.swift in Sources */,
+				26A349BB26840928E7FC7858 /* AppController.swift in Sources */,
+				B2FE62F5CE616E93CB876442 /* AppDelegate.swift in Sources */,
+				640F8B6CEC848520851CF9D5 /* AppTheme.swift in Sources */,
+				AD1A1AF3F6B5E82EC752C67D /* AudioCaptureManager.swift in Sources */,
+				B8E8F1E25A2861F1909BBA47 /* ClaudeNotesGenerator.swift in Sources */,
+				7CE1D3C8F772891F9345C406 /* DropdownView.swift in Sources */,
+				608A3B165DAA85604CE46EE7 /* GenerationPillView.swift in Sources */,
+				1BBA61DFCCA6FDE9D22246A2 /* KeyboardShortcutNames.swift in Sources */,
+				85FDEBE535A558A460F8AF64 /* KeychainManager.swift in Sources */,
+				2955B8B9727DAD55FB8A16AE /* MainView.swift in Sources */,
+				D5E541D5B6AB9B7CCB4949C4 /* MeetingStore.swift in Sources */,
+				03AB864B42A534997E2F75E2 /* MenoteApp.swift in Sources */,
+				21A22FCB7961A67B7BFCB515 /* Models.swift in Sources */,
+				A780EE5CB33C7DDBC01B7B80 /* NotesController.swift in Sources */,
+				1F89CAAFA76B6071DC5E1A04 /* NotesGenerator.swift in Sources */,
+				6366D1834AA20CEED218F8A1 /* NotesView.swift in Sources */,
+				8C3CAE1A07CDC7E3C2C3C367 /* NotificationManager.swift in Sources */,
+				6F1EA8723273F134B8590ADA /* PermissionsView.swift in Sources */,
+				67C4B2111F34F033A97126EF /* RecorderController.swift in Sources */,
+				4B5D9EFD60735FCBC5E30AD1 /* RecorderView.swift in Sources */,
+				B058EB64ED3BBA00EAD74364 /* SettingsView.swift in Sources */,
+				C3BB950A7EE346EFD9F1DCA6 /* StatusBarController.swift in Sources */,
+				EC6F5A73A27D24CB1313AFA8 /* Transcriber.swift in Sources */,
+				7211826B9C7D0E6E430DDB26 /* WhisperKitTranscriber.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,12 +368,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Granolap/Granolap.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Menote/Menote.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = Granolap/Info.plist;
+				INFOPLIST_FILE = Menote/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -507,12 +509,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Granolap/Granolap.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Menote/Menote.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = Granolap/Info.plist;
+				INFOPLIST_FILE = Menote/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
