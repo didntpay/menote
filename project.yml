@@ -1,0 +1,49 @@
+name: Granolap
+options:
+  minimumXcodeVersion: "15.0"
+  deploymentTarget:
+    macOS: "14.0"
+  bundleIdPrefix: com.granolap
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+packages:
+  KeyboardShortcuts:
+    url: https://github.com/sindresorhus/KeyboardShortcuts
+    from: "2.0.0"
+
+targets:
+  Granolap:
+    type: application
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: Granolap
+        excludes:
+          - "Resources/Assets.xcassets"
+    resources:
+      - path: Granolap/Resources/Assets.xcassets
+    info:
+      path: Granolap/Info.plist
+      properties:
+        CFBundleDisplayName: Granolap
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+        NSMicrophoneUsageDescription: "Granolap needs microphone access to record meeting audio."
+        NSAppleEventsUsageDescription: "Granolap uses screen recording to capture system audio."
+        NSSpeechRecognitionUsageDescription: "Granolap transcribes your meeting recordings."
+        NSUserNotificationAlertStyle: alert
+        CFBundleIdentifier: com.granolap.Granolap
+    entitlements:
+      path: Granolap/Granolap.entitlements
+    dependencies:
+      - package: KeyboardShortcuts
+        product: KeyboardShortcuts
+    settings:
+      base:
+        SWIFT_VERSION: "5.0"
+        ENABLE_HARDENED_RUNTIME: YES
+        CODE_SIGN_IDENTITY: "-"
+        MACOSX_DEPLOYMENT_TARGET: "14.0"
+        DEVELOPMENT_TEAM: ""
+        SWIFT_STRICT_CONCURRENCY: minimal
