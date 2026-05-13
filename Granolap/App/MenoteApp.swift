@@ -1,11 +1,11 @@
 import SwiftUI
 
 @main
-struct GranolapApp: App {
+struct MenoteApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
     var body: some Scene {
-        WindowGroup("Granolap", id: "main") {
+        WindowGroup("Menote", id: "main") {
             MainView(controller: delegate.appController)
                 .frame(minWidth: 700, minHeight: 480)
         }

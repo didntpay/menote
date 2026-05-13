@@ -1,9 +1,9 @@
-name: Granolap
+name: Menote
 options:
   minimumXcodeVersion: "15.0"
   deploymentTarget:
     macOS: "14.0"
-  bundleIdPrefix: com.granolap
+  bundleIdPrefix: com.menote
   createIntermediateGroups: true
   groupSortPosition: top
 
@@ -13,7 +13,7 @@ packages:
     from: "2.0.0"
 
 targets:
-  Granolap:
+  Menote:
     type: application
     platform: macOS
     deploymentTarget: "14.0"
@@ -26,14 +26,14 @@ targets:
     info:
       path: Granolap/Info.plist
       properties:
-        CFBundleDisplayName: Granolap
+        CFBundleDisplayName: Menote
         CFBundleShortVersionString: "1.0"
         CFBundleVersion: "1"
-        NSMicrophoneUsageDescription: "Granolap needs microphone access to record meeting audio."
-        NSAppleEventsUsageDescription: "Granolap uses screen recording to capture system audio."
-        NSSpeechRecognitionUsageDescription: "Granolap transcribes your meeting recordings."
+        NSMicrophoneUsageDescription: "Menote needs microphone access to record meeting audio."
+        NSAppleEventsUsageDescription: "Menote uses screen recording to capture system audio."
+        NSSpeechRecognitionUsageDescription: "Menote transcribes your meeting recordings."
         NSUserNotificationAlertStyle: alert
-        CFBundleIdentifier: com.granolap.Granolap
+        CFBundleIdentifier: com.menote.Menote
     entitlements:
       path: Granolap/Granolap.entitlements
     dependencies:

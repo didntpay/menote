@@ -39,7 +39,7 @@ struct SettingsView: View {
             }
             Section("About") {
                 HStack {
-                    Text("Granolap")
+                    Text("Menote")
                     Spacer()
                     Text("v1.0").foregroundColor(AppTheme.textSecondary)
                 }

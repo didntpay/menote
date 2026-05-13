@@ -12,7 +12,7 @@ struct PermissionsView: View {
             Text("Before we start")
                 .font(AppTheme.headingFont(size: 22))
 
-            Text("Granolap needs two permissions to capture your meeting.")
+            Text("Menote needs two permissions to capture your meeting.")
                 .font(AppTheme.body)
                 .foregroundColor(AppTheme.textSecondary)
 

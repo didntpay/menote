@@ -1,0 +1,571 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02516CE7F0FAC39DCAB82853 /* MenoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8BDFFC8354A82371A935C9 /* MenoteApp.swift */; };
+		20EB09C02FC20D38251D66BE /* NotesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCBB543DBC7B79A08CC0C88 /* NotesController.swift */; };
+		211FFC2AF4623CEA5331752A /* ClaudeNotesGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB4A8B7B7B9515762A07610 /* ClaudeNotesGenerator.swift */; };
+		313C1DCB6FB79468039421B3 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E573E310118A2B380FFC939 /* AppTheme.swift */; };
+		346AA8237025D5EF01E7A4DA /* KeyboardShortcutNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AD42653B0D7F368F2B19E6 /* KeyboardShortcutNames.swift */; };
+		3D0E57E33E98CA16C79B3B20 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC4D15F02C5BF189042A4 /* NotesView.swift */; };
+		3F95D75311A5C47A00C35D5B /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB622C9A8A8DE7BE36337A2 /* StatusBarController.swift */; };
+		5A8D15ECFAB2ECE36C986EC9 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706B60674F4AD3BA4B800A30 /* KeychainManager.swift */; };
+		5ED4792ED7D0904A9C0C9BD6 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4F4429EACB6F31A9B4B067 /* AppController.swift */; };
+		6881CCBC65107C8181722182 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A2DDBC67B8794BB581E513 /* Models.swift */; };
+		6BD816A6FA5B41BD24BBD5BD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93B1FB79CF7528890415585 /* SettingsView.swift */; };
+		7032F9FA72C4688DDECD63AB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1F59602B904DF10E4F31CB /* MainView.swift */; };
+		74352ACAAE3F6FF286670D6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC327E2E5BF621CCC907F95 /* AppDelegate.swift */; };
+		8F6D613ACD03A289306CA484 /* WhisperKitTranscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50884A40991166AEA2C8EE2 /* WhisperKitTranscriber.swift */; };
+		8FC2C60C2EC4BC9483F664CD /* RecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D302CC7D481C3E678185736 /* RecorderView.swift */; };
+		9C18157DCFE677371B50E56E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF85E6E818BF735D279480A /* NotificationManager.swift */; };
+		9DAF86EAD11F7E4E2C5A7FA6 /* GenerationPillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF438471F3060AFC42F59D81 /* GenerationPillView.swift */; };
+		A673402F27E6A344B201FD57 /* MeetingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F5B8E5C0402B86992DBF4B /* MeetingStore.swift */; };
+		A72A053D2400E17E2DFFBA2F /* RecorderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283F53EAC127E05C68D5062E /* RecorderController.swift */; };
+		A90A429C02D1B438FF9369A3 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = F2467BA4EDC5AE8EE61299AD /* KeyboardShortcuts */; };
+		AB9B22A4E6DD65F56B25D34C /* PermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA19C8885B0EEC13696A03E /* PermissionsView.swift */; };
+		AFF5ECCD802CBA1D1CB33D36 /* DropdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB755B107DA0499F8C3CB58 /* DropdownView.swift */; };
+		B6A2BD35F42DBB4B274B6022 /* Transcriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935D58C50884F1BADC03615B /* Transcriber.swift */; };
+		D390EB1D26939C969D6D4ED4 /* NotesGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD36E1D8D5299C7EF60475C /* NotesGenerator.swift */; };
+		E2258F68C0D22BCB64C79BDE /* AudioCaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118142FC4EBD2AE6A1B3189D /* AudioCaptureManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0236405130648F8897B596F3 /* Granolap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Granolap.entitlements; sourceTree = "<group>"; };
+		118142FC4EBD2AE6A1B3189D /* AudioCaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCaptureManager.swift; sourceTree = "<group>"; };
+		1E573E310118A2B380FFC939 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		283F53EAC127E05C68D5062E /* RecorderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderController.swift; sourceTree = "<group>"; };
+		2D302CC7D481C3E678185736 /* RecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderView.swift; sourceTree = "<group>"; };
+		3CCBB543DBC7B79A08CC0C88 /* NotesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesController.swift; sourceTree = "<group>"; };
+		3EC8814998DAADC0BC38A630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		47A2DDBC67B8794BB581E513 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		487EC4D15F02C5BF189042A4 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
+		4DF85E6E818BF735D279480A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		5AB755B107DA0499F8C3CB58 /* DropdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownView.swift; sourceTree = "<group>"; };
+		706B60674F4AD3BA4B800A30 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		8CC327E2E5BF621CCC907F95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		935D58C50884F1BADC03615B /* Transcriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transcriber.swift; sourceTree = "<group>"; };
+		9A8BDFFC8354A82371A935C9 /* MenoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenoteApp.swift; sourceTree = "<group>"; };
+		9C4F4429EACB6F31A9B4B067 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		9DD36E1D8D5299C7EF60475C /* NotesGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesGenerator.swift; sourceTree = "<group>"; };
+		B2F5B8E5C0402B86992DBF4B /* MeetingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingStore.swift; sourceTree = "<group>"; };
+		BAA19C8885B0EEC13696A03E /* PermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsView.swift; sourceTree = "<group>"; };
+		BDB622C9A8A8DE7BE36337A2 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		D0AD42653B0D7F368F2B19E6 /* KeyboardShortcutNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcutNames.swift; sourceTree = "<group>"; };
+		D93B1FB79CF7528890415585 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		DE1F59602B904DF10E4F31CB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		EBB4A8B7B7B9515762A07610 /* ClaudeNotesGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeNotesGenerator.swift; sourceTree = "<group>"; };
+		EF438471F3060AFC42F59D81 /* GenerationPillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerationPillView.swift; sourceTree = "<group>"; };
+		F50884A40991166AEA2C8EE2 /* WhisperKitTranscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperKitTranscriber.swift; sourceTree = "<group>"; };
+		FEA488378821AA12ACCE54F9 /* Menote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Menote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		657D2B612942D1C846622D5D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A90A429C02D1B438FF9369A3 /* KeyboardShortcuts in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		055E24DA53DFCBA53FCABD57 /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				487EC4D15F02C5BF189042A4 /* NotesView.swift */,
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
+		18D1556120C3BEA0900AB7C5 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D93B1FB79CF7528890415585 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		19D61EF21A3EA5C9EFEBDCDD /* Generation */ = {
+			isa = PBXGroup;
+			children = (
+				EF438471F3060AFC42F59D81 /* GenerationPillView.swift */,
+			);
+			path = Generation;
+			sourceTree = "<group>";
+		};
+		2139DAAAFC94621D117F98D3 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				118142FC4EBD2AE6A1B3189D /* AudioCaptureManager.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		22560717C59EFB03A638C75C /* Permissions */ = {
+			isa = PBXGroup;
+			children = (
+				BAA19C8885B0EEC13696A03E /* PermissionsView.swift */,
+			);
+			path = Permissions;
+			sourceTree = "<group>";
+		};
+		226A5E5FEABF434A434B656A /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				2139DAAAFC94621D117F98D3 /* Audio */,
+				5EEA61EEF59B03D3B60DDB83 /* Keychain */,
+				C41B5949A91A4BDEC09D4F5C /* LLM */,
+				6502C2019C9CDDEC93D9E5E4 /* Notifications */,
+				3DBA532DD6AED23C11AA03CB /* Storage */,
+				AE238CA5ADF746AF32ECF1B3 /* Transcription */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		3DBA532DD6AED23C11AA03CB /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				B2F5B8E5C0402B86992DBF4B /* MeetingStore.swift */,
+				47A2DDBC67B8794BB581E513 /* Models.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		487AB7E8AB07EF9C60931326 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5EEA61EEF59B03D3B60DDB83 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				706B60674F4AD3BA4B800A30 /* KeychainManager.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
+		63AE94F15588139DEBF6833B = {
+			isa = PBXGroup;
+			children = (
+				86E4E30D38B99BA6B86112AC /* Granolap */,
+				6475951787CEFAAEEB31F37A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6475951787CEFAAEEB31F37A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FEA488378821AA12ACCE54F9 /* Menote.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6502C2019C9CDDEC93D9E5E4 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				4DF85E6E818BF735D279480A /* NotificationManager.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		67D3755FB5F88B0317A30ACD /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				DE1F59602B904DF10E4F31CB /* MainView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		6BCEEB4385AB7D62D478AFEA /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				1E573E310118A2B380FFC939 /* AppTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		832F313AF3705F12ACF91193 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				9C4F4429EACB6F31A9B4B067 /* AppController.swift */,
+				8CC327E2E5BF621CCC907F95 /* AppDelegate.swift */,
+				D0AD42653B0D7F368F2B19E6 /* KeyboardShortcutNames.swift */,
+				9A8BDFFC8354A82371A935C9 /* MenoteApp.swift */,
+				3CCBB543DBC7B79A08CC0C88 /* NotesController.swift */,
+				283F53EAC127E05C68D5062E /* RecorderController.swift */,
+				BDB622C9A8A8DE7BE36337A2 /* StatusBarController.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		86E4E30D38B99BA6B86112AC /* Granolap */ = {
+			isa = PBXGroup;
+			children = (
+				832F313AF3705F12ACF91193 /* App */,
+				226A5E5FEABF434A434B656A /* Core */,
+				487AB7E8AB07EF9C60931326 /* Resources */,
+				6BCEEB4385AB7D62D478AFEA /* Theme */,
+				C9E86738A46EF12481556FE4 /* Views */,
+				0236405130648F8897B596F3 /* Granolap.entitlements */,
+				3EC8814998DAADC0BC38A630 /* Info.plist */,
+			);
+			path = Granolap;
+			sourceTree = "<group>";
+		};
+		8D06647BE11FAF4C192225E5 /* Recorder */ = {
+			isa = PBXGroup;
+			children = (
+				2D302CC7D481C3E678185736 /* RecorderView.swift */,
+			);
+			path = Recorder;
+			sourceTree = "<group>";
+		};
+		AE238CA5ADF746AF32ECF1B3 /* Transcription */ = {
+			isa = PBXGroup;
+			children = (
+				935D58C50884F1BADC03615B /* Transcriber.swift */,
+				F50884A40991166AEA2C8EE2 /* WhisperKitTranscriber.swift */,
+			);
+			path = Transcription;
+			sourceTree = "<group>";
+		};
+		C41B5949A91A4BDEC09D4F5C /* LLM */ = {
+			isa = PBXGroup;
+			children = (
+				EBB4A8B7B7B9515762A07610 /* ClaudeNotesGenerator.swift */,
+				9DD36E1D8D5299C7EF60475C /* NotesGenerator.swift */,
+			);
+			path = LLM;
+			sourceTree = "<group>";
+		};
+		C9E86738A46EF12481556FE4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D2CAAAFB4D2B3D273E1604F1 /* Dropdown */,
+				19D61EF21A3EA5C9EFEBDCDD /* Generation */,
+				67D3755FB5F88B0317A30ACD /* Main */,
+				055E24DA53DFCBA53FCABD57 /* Notes */,
+				22560717C59EFB03A638C75C /* Permissions */,
+				8D06647BE11FAF4C192225E5 /* Recorder */,
+				18D1556120C3BEA0900AB7C5 /* Settings */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D2CAAAFB4D2B3D273E1604F1 /* Dropdown */ = {
+			isa = PBXGroup;
+			children = (
+				5AB755B107DA0499F8C3CB58 /* DropdownView.swift */,
+			);
+			path = Dropdown;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BD3BEE230D2715A2CBA293D4 /* Menote */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB1EE6F9D3080B7DFB34F88F /* Build configuration list for PBXNativeTarget "Menote" */;
+			buildPhases = (
+				FA88C92667686D0A97AA4475 /* Sources */,
+				657D2B612942D1C846622D5D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Menote;
+			packageProductDependencies = (
+				F2467BA4EDC5AE8EE61299AD /* KeyboardShortcuts */,
+			);
+			productName = Menote;
+			productReference = FEA488378821AA12ACCE54F9 /* Menote.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B9A221F8591F33715346C849 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					BD3BEE230D2715A2CBA293D4 = {
+						DevelopmentTeam = "";
+					};
+				};
+			};
+			buildConfigurationList = 79817878ED02652A00CAFB06 /* Build configuration list for PBXProject "Menote" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 63AE94F15588139DEBF6833B;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B871A28FA2D15671FBBD7F91 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 6475951787CEFAAEEB31F37A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BD3BEE230D2715A2CBA293D4 /* Menote */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FA88C92667686D0A97AA4475 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5ED4792ED7D0904A9C0C9BD6 /* AppController.swift in Sources */,
+				74352ACAAE3F6FF286670D6F /* AppDelegate.swift in Sources */,
+				313C1DCB6FB79468039421B3 /* AppTheme.swift in Sources */,
+				E2258F68C0D22BCB64C79BDE /* AudioCaptureManager.swift in Sources */,
+				211FFC2AF4623CEA5331752A /* ClaudeNotesGenerator.swift in Sources */,
+				AFF5ECCD802CBA1D1CB33D36 /* DropdownView.swift in Sources */,
+				9DAF86EAD11F7E4E2C5A7FA6 /* GenerationPillView.swift in Sources */,
+				346AA8237025D5EF01E7A4DA /* KeyboardShortcutNames.swift in Sources */,
+				5A8D15ECFAB2ECE36C986EC9 /* KeychainManager.swift in Sources */,
+				7032F9FA72C4688DDECD63AB /* MainView.swift in Sources */,
+				A673402F27E6A344B201FD57 /* MeetingStore.swift in Sources */,
+				02516CE7F0FAC39DCAB82853 /* MenoteApp.swift in Sources */,
+				6881CCBC65107C8181722182 /* Models.swift in Sources */,
+				20EB09C02FC20D38251D66BE /* NotesController.swift in Sources */,
+				D390EB1D26939C969D6D4ED4 /* NotesGenerator.swift in Sources */,
+				3D0E57E33E98CA16C79B3B20 /* NotesView.swift in Sources */,
+				9C18157DCFE677371B50E56E /* NotificationManager.swift in Sources */,
+				AB9B22A4E6DD65F56B25D34C /* PermissionsView.swift in Sources */,
+				A72A053D2400E17E2DFFBA2F /* RecorderController.swift in Sources */,
+				8FC2C60C2EC4BC9483F664CD /* RecorderView.swift in Sources */,
+				6BD816A6FA5B41BD24BBD5BD /* SettingsView.swift in Sources */,
+				3F95D75311A5C47A00C35D5B /* StatusBarController.swift in Sources */,
+				B6A2BD35F42DBB4B274B6022 /* Transcriber.swift in Sources */,
+				8F6D613ACD03A289306CA484 /* WhisperKitTranscriber.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		5858670E2EE18F618BEFFFB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Granolap/Granolap.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Granolap/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.menote.Menote;
+				SDKROOT = macosx;
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8795F7F00931892F0DA4201E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		90F6B0083E752B00BA0E9A33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B522ACED37FD27F26A6B5DAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Granolap/Granolap.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Granolap/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.menote.Menote;
+				SDKROOT = macosx;
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		79817878ED02652A00CAFB06 /* Build configuration list for PBXProject "Menote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90F6B0083E752B00BA0E9A33 /* Debug */,
+				8795F7F00931892F0DA4201E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DB1EE6F9D3080B7DFB34F88F /* Build configuration list for PBXNativeTarget "Menote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5858670E2EE18F618BEFFFB6 /* Debug */,
+				B522ACED37FD27F26A6B5DAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B871A28FA2D15671FBBD7F91 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F2467BA4EDC5AE8EE61299AD /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B871A28FA2D15671FBBD7F91 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = B9A221F8591F33715346C849 /* Project object */;
+}

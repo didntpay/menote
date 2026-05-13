@@ -11,7 +11,7 @@ final class MeetingStore {
 
     init() {
         let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-            .appendingPathComponent("Granolap")
+            .appendingPathComponent("Menote")
         appSupport = base
         meetingsDir = base.appendingPathComponent("meetings")
         indexURL = base.appendingPathComponent("meetings.json")

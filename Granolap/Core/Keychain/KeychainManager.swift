@@ -3,7 +3,7 @@ import Security
 
 final class KeychainManager {
     static let shared = KeychainManager()
-    private let service = "com.granolap.Granolap"
+    private let service = "com.menote.Menote"
     private let account = "anthropic-api-key"
 
     var apiKey: String? {

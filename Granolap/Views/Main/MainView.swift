@@ -185,7 +185,7 @@ private struct DetailPane: View {
 private struct EmptyDetailView: View {
     var body: some View {
         VStack(spacing: 12) {
-            Text("Granolap")
+            Text("Menote")
                 .font(AppTheme.headingFont(size: 28))
                 .foregroundColor(AppTheme.textTertiary)
             Text("Start a recording or select a past meeting.")
