@@ -8,6 +8,8 @@
 	<string>Menote</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIconName</key>
+	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.menote.Menote</string>
 	<key>CFBundleInfoDictionaryVersion</key>

@@ -27,6 +27,78 @@ struct MeetingRecord: Identifiable, Codable, Equatable {
         fmt.timeStyle = .short
         return fmt.string(from: startedAt)
     }
+
+    /// Long-form metadata date — "Sat, May 17 · 10:42 AM".
+    var formattedMetaDate: String {
+        let fmt = DateFormatter()
+        fmt.dateFormat = "EEE, MMM d  ·  h:mm a"
+        return fmt.string(from: startedAt)
+    }
+
+    /// Duration like "42 min" or "1h 5 min" for the metadata row.
+    var formattedMinutes: String {
+        let total = durationSeconds
+        let h = total / 3600
+        let m = (total % 3600) / 60
+        if h > 0 { return "\(h)h \(m) min" }
+        return "\(max(m, 1)) min"
+    }
+
+    /// Right-aligned timestamp for sidebar rows — "9:30" for today, "Fri" this week,
+    /// "May 10" otherwise.
+    var sidebarTimestamp: String {
+        let cal = Calendar.current
+        let fmt = DateFormatter()
+        if cal.isDateInToday(startedAt) {
+            fmt.dateFormat = "h:mm"
+            return fmt.string(from: startedAt)
+        }
+        if cal.isDate(startedAt, equalTo: Date(), toGranularity: .weekOfYear) {
+            fmt.dateFormat = "EEE"
+            return fmt.string(from: startedAt)
+        }
+        fmt.dateFormat = "MMM d"
+        return fmt.string(from: startedAt)
+    }
+}
+
+enum MeetingGroup: String, CaseIterable, Hashable {
+    case today, thisWeek, earlier
+
+    /// User-facing label. Routes through `NSLocalizedString` so future
+    /// translations only need to drop in a `.strings` file.
+    var localizedName: String {
+        switch self {
+        case .today:    return NSLocalizedString("Today",     comment: "Sidebar group: meetings from today")
+        case .thisWeek: return NSLocalizedString("This Week", comment: "Sidebar group: meetings earlier this week")
+        case .earlier:  return NSLocalizedString("Earlier",   comment: "Sidebar group: older meetings")
+        }
+    }
+}
+
+extension Array where Element == MeetingRecord {
+    /// Groups meetings into Today / This Week / Earlier. Empty groups are omitted.
+    var grouped: [(group: MeetingGroup, items: [MeetingRecord])] {
+        let cal = Calendar.current
+        let now = Date()
+        var today: [MeetingRecord] = []
+        var thisWeek: [MeetingRecord] = []
+        var earlier: [MeetingRecord] = []
+        for meeting in self {
+            if cal.isDateInToday(meeting.startedAt) {
+                today.append(meeting)
+            } else if cal.isDate(meeting.startedAt, equalTo: now, toGranularity: .weekOfYear) {
+                thisWeek.append(meeting)
+            } else {
+                earlier.append(meeting)
+            }
+        }
+        var result: [(MeetingGroup, [MeetingRecord])] = []
+        if !today.isEmpty    { result.append((.today, today)) }
+        if !thisWeek.isEmpty { result.append((.thisWeek, thisWeek)) }
+        if !earlier.isEmpty  { result.append((.earlier, earlier)) }
+        return result
+    }
 }
 
 // MARK: - Transcript

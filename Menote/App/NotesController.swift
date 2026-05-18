@@ -15,7 +15,7 @@ final class NotesController: ObservableObject {
     }
 
     // Convenience init for SwiftUI previews — bypasses disk.
-    init(meeting: MeetingRecord, notes: NotesData, transcript: TranscriptData) {
+    init(meeting: MeetingRecord, notes: NotesData, transcript: TranscriptData? = nil) {
         self.store = MeetingStore()
         self.selectedMeeting = meeting
         self.notes = notes
