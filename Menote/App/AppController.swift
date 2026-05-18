@@ -30,10 +30,12 @@ final class AppController: ObservableObject {
     // Sub-controllers exposed so views can read/observe them directly.
     let recorder: RecorderController
     let notes: NotesController
+    let transcriber = WhisperKitTranscriber()
 
     private let store: MeetingStore
     private var cancellables = Set<AnyCancellable>()
     private var notesReadyResetTask: Task<Void, Never>?
+    private var lastPublishedProgress: Double = -1
 
     init() {
         let store = MeetingStore()
@@ -96,15 +98,11 @@ final class AppController: ObservableObject {
     func resumeRecording() { recorder.resume() }
 
     func endRecording() {
-        appState = .generating(stage: "mixing audio", progress: 0.02)
-        Task {
-            guard let session = await recorder.end() else {
-                appState = .error("No active recording session.")
-                return
-            }
-            appState = .generating(stage: "transcribing", progress: 0.05)
-            await runGenerationPipeline(session: session)
+        guard let session = recorder.end() else {
+            appState = .error("No active recording session.")
+            return
         }
+        Task { await runGenerationPipeline(session: session) }
     }
 
     func handleShortcut() {
@@ -121,9 +119,22 @@ final class AppController: ObservableObject {
 
     private func runGenerationPipeline(session: RecorderController.Session) async {
         do {
-            // Transcribe
-            appState = .generating(stage: "transcribing", progress: 0.1)
-            let transcriber = WhisperKitTranscriber()
+            // Transcribe — WhisperKit downloads the model on first run.
+            appState = .generating(stage: "preparing model", progress: 0.05)
+            lastPublishedProgress = 0.05
+            transcriber.onProgress = { [weak self] stage, p in
+                // Map transcriber sub-progress into the 0.05 → 0.50 band of the pipeline.
+                // Throttle: only publish when stage changes or progress moves by >= 1%.
+                guard let self else { return }
+                let mapped = 0.05 + p * 0.45
+                if case .generating(let curStage, _) = self.appState,
+                   curStage == stage,
+                   abs(mapped - self.lastPublishedProgress) < 0.01 {
+                    return
+                }
+                self.lastPublishedProgress = mapped
+                self.appState = .generating(stage: stage, progress: mapped)
+            }
             let transcript = try await transcriber.transcribe(audioURL: session.audioURL)
 
             // Generate notes

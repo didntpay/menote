@@ -20,12 +20,8 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>NSAppleEventsUsageDescription</key>
-	<string>Menote uses screen recording to capture system audio.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Menote needs microphone access to record meeting audio.</string>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Menote transcribes your meeting recordings.</string>
 	<key>NSUserNotificationAlertStyle</key>
 	<string>alert</string>
 </dict>

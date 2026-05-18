@@ -14,13 +14,11 @@ final class RecorderController: ObservableObject {
     @Published private(set) var state: State = .idle
 
     let audio = AudioCaptureManager()
-    let systemAudio = SystemAudioCaptureManager()
 
     private(set) var sessionID: String?
     private(set) var sessionDir: URL?
     private(set) var startedAt = Date()
     private(set) var elapsedSeconds: TimeInterval = 0
-    private var systemAudioActive = false
 
     private var elapsedTimer: Timer?
     private let store: MeetingStore
@@ -41,17 +39,6 @@ final class RecorderController: ObservableObject {
         try audio.startCapture(sessionDir: dir)
         state = .recording(elapsed: 0)
         startTimer()
-
-        // System audio is best-effort. Permission can be granted later via Settings.
-        systemAudioActive = false
-        Task {
-            do {
-                try await systemAudio.startCapture(sessionDir: dir)
-                systemAudioActive = true
-            } catch {
-                print("System audio unavailable, mic only: \(error.localizedDescription)")
-            }
-        }
     }
 
     func pause() {
@@ -69,29 +56,17 @@ final class RecorderController: ObservableObject {
         startTimer()
     }
 
-    /// Stops recording, mixes mic + system audio, and returns session info.
-    func end() async -> Session? {
+    /// Stops recording and returns session info.
+    func end() -> Session? {
         elapsedTimer?.invalidate()
-        guard let micURL = audio.stop(),
+        guard let audioURL = audio.stop(),
               let id = sessionID,
               let dir = sessionDir else { return nil }
-
-        let systemURL: URL? = systemAudioActive ? await systemAudio.stop() : nil
-        systemAudioActive = false
-
-        let mixedURL = dir.appendingPathComponent("audio.m4a")
-        let finalURL: URL
-        do {
-            finalURL = try await AudioMixer.mix(mic: micURL, system: systemURL, outputURL: mixedURL)
-        } catch {
-            print("Audio mix failed, using mic only: \(error.localizedDescription)")
-            finalURL = micURL
-        }
 
         let session = Session(
             id: id,
             dir: dir,
-            audioURL: finalURL,
+            audioURL: audioURL,
             durationSeconds: Int(elapsedSeconds),
             startedAt: startedAt
         )

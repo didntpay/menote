@@ -350,12 +350,8 @@ Granolap/
 
 ## Open items / future work
 
-### MVP gaps (not yet implemented)
-- **WhisperKit transcription** — currently using `SFSpeechRecognizer` (network-assisted); WhisperKit (`small.en`) is the local-first target. Requires SPM dep + ~466MB model download on first launch.
-
 ### Intentional MVP divergences
-- **Pause behavior** — the plan (Flow 9) says pause stops *both* mic and system audio. Implementation pauses only mic; system audio continues recording during a pause. The mixer composes the (longer) system track against the (gap-containing) mic track; AVMutableComposition handles uneven track lengths. Revisit if user testing reveals confusion.
-- **System audio permission** — best-effort. If screen-recording permission is denied or revoked, the recorder window shows "system audio off — grant screen recording in System Settings" and continues mic-only.
+- **System audio dropped from MVP** — the plan originally called for mic + system audio mixed via `SCStream`. Removed in favour of mic-only: simpler permissions story, no screen-recording prompt, and the most common use case (in-person meetings + voice calls picked up by mic) is unaffected. Reinstate behind a setting if user feedback demands it.
 
 ### Post-MVP
 - **Code signing + notarization** — needed before sharing widely (requires $99/yr Apple Developer Program). Until then, peers right-click → Open to bypass Gatekeeper.
@@ -393,6 +389,6 @@ Granolap/
 | Features folder | Renamed to `Views/` | More accurate — views contain no business logic |
 | Main window | Added NavigationSplitView (sidebar + detail) | Needed a home for past meetings and notes; menu-bar-only was insufficient |
 | Storage (implemented) | JSON files instead of GRDB/SQLite | No GRDB dependency to manage; JSON sufficient for MVP meeting index |
-| Transcription (interim) | `SFSpeechRecognizer` instead of WhisperKit | No model download required; unblocks end-to-end testing. WhisperKit is the target for local-first. |
+| Transcription | WhisperKit `openai_whisper-small.en` | Local, Core ML / Neural Engine. ~466MB model downloaded on first transcription with progress shown in the menu-bar pill. |
 | Audio (interim) | `AVAudioRecorder` (mic only) instead of AVAudioEngine + SCStream mix | Unblocks recording pipeline; system audio is next milestone |
 | Heading font | SF Pro Rounded instead of Caveat | Caveat requires bundling a TTF; SF Rounded is built-in and visually close enough for now |

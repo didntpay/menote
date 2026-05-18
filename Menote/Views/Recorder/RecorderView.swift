@@ -4,13 +4,11 @@ struct RecorderView: View {
     @ObservedObject var controller: AppController
     @ObservedObject var recorder: RecorderController
     @ObservedObject var mic: AudioCaptureManager
-    @ObservedObject var system: SystemAudioCaptureManager
 
     init(controller: AppController) {
         self.controller = controller
         self.recorder   = controller.recorder
         self.mic        = controller.recorder.audio
-        self.system     = controller.recorder.systemAudio
     }
 
     var body: some View {
@@ -40,23 +38,10 @@ struct RecorderView: View {
             .padding(.horizontal, 14)
             .padding(.top, 14)
 
-            if system.status != .capturing {
-                HStack(spacing: 4) {
-                    Image(systemName: "speaker.slash")
-                        .font(.system(size: 9))
-                    Text("system audio off — grant screen recording in System Settings")
-                        .font(AppTheme.monoSmall)
-                }
-                .foregroundColor(AppTheme.textTertiary)
-                .padding(.horizontal, 14)
-                .padding(.top, 6)
-            }
-
             Spacer()
 
             HStack(spacing: 16) {
-                AudioMeter(icon: "mic",            level: mic.micLevel,        color: AppTheme.recordingRed)
-                AudioMeter(icon: "speaker.wave.2", level: system.systemLevel,  color: AppTheme.actionBlue, dimmed: system.status != .capturing)
+                AudioMeter(icon: "mic", level: mic.micLevel, color: AppTheme.recordingRed)
             }
             .padding(.horizontal, 14)
             .padding(.bottom, 14)
@@ -102,7 +87,6 @@ private struct AudioMeter: View {
     let icon: String
     let level: Float   // dBFS −60…0
     let color: Color
-    var dimmed: Bool = false
     private let bars = 10
 
     var body: some View {
@@ -121,6 +105,5 @@ private struct AudioMeter: View {
                 }
             }
         }
-        .opacity(dimmed ? 0.4 : 1.0)
     }
 }

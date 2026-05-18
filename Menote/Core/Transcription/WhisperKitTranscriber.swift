@@ -1,61 +1,106 @@
 import Foundation
-import Speech
+import WhisperKit
 
-struct WhisperKitTranscriber: Transcriber {
+/// Local transcription via WhisperKit (Core ML / Neural Engine).
+/// First call downloads the `small.en` model (~466MB); subsequent calls reuse the cached pipeline.
+///
+/// `@MainActor`-isolated so the cache + loading-task state never race across callers. The
+/// async work inside (download/load/transcribe) suspends off-main as expected.
+@MainActor
+final class WhisperKitTranscriber: Transcriber {
+
+    static let modelVariant = "openai_whisper-small.en"
+
+    // Instance-local — single transcriber lives for the life of AppController.
+    private var cached: WhisperKit?
+    private var loadingTask: Task<WhisperKit, Error>?
+
+    /// `(stage, progress 0…1)` — called during model download/load and transcription.
+    var onProgress: (@MainActor (String, Double) -> Void)?
+
     func transcribe(audioURL: URL) async throws -> TranscriptData {
-        let status = await withCheckedContinuation { cont in
-            SFSpeechRecognizer.requestAuthorization { cont.resume(returning: $0) }
-        }
-        guard status == .authorized else {
-            throw TranscriptionError.notAuthorized
-        }
+        let pipe = try await ensurePipeline()
 
-        guard let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US")),
-              recognizer.isAvailable else {
-            throw TranscriptionError.unavailable
-        }
+        onProgress?("transcribing", 0.0)
+        let results = try await pipe.transcribe(audioPath: audioURL.path)
 
-        let request = SFSpeechURLRecognitionRequest(url: audioURL)
-        request.shouldReportPartialResults = false
-        request.requiresOnDeviceRecognition = false
-
-        return try await withCheckedThrowingContinuation { cont in
-            recognizer.recognitionTask(with: request) { result, error in
-                if let error { cont.resume(throwing: error); return }
-                guard let result, result.isFinal else { return }
-
-                let words = result.bestTranscription.segments
-                var segments: [TranscriptSegment] = []
-                let chunkSize = 15
-                var i = 0
-                while i < words.count {
-                    let chunk = words[i..<min(i + chunkSize, words.count)]
-                    let text = chunk.map(\.substring).joined(separator: " ")
-                    let start = chunk.first!.timestamp
-                    let end = (chunk.last.map { $0.timestamp + $0.duration }) ?? start
-                    segments.append(TranscriptSegment(start: start, end: end, text: text, speakerId: nil))
-                    i += chunkSize
-                }
-
-                if segments.isEmpty {
-                    let full = result.bestTranscription.formattedString
-                    segments = [TranscriptSegment(start: 0, end: 0, text: full, speakerId: nil)]
-                }
-
-                cont.resume(returning: TranscriptData(language: "en", segments: segments))
+        let segments: [TranscriptSegment] = results
+            .flatMap { $0.segments }
+            .map { seg in
+                TranscriptSegment(
+                    start: Double(seg.start),
+                    end:   Double(seg.end),
+                    text:  Self.cleanText(seg.text),
+                    speakerId: nil
+                )
             }
+            .filter { !$0.text.isEmpty }
+
+        guard !segments.isEmpty else {
+            throw TranscriptionError.noAudio
+        }
+
+        let language = results.first?.language ?? "en"
+        return TranscriptData(language: language, segments: segments)
+    }
+
+    // MARK: - Private
+
+    private func ensurePipeline() async throws -> WhisperKit {
+        if let cached { return cached }
+        if let inflight = loadingTask { return try await inflight.value }
+
+        let progress = onProgress
+        let task = Task { @MainActor () -> WhisperKit in
+            progress?("preparing model", 0.0)
+            let folder = try await WhisperKit.download(
+                variant: Self.modelVariant,
+                progressCallback: { p in
+                    Task { @MainActor in
+                        progress?("downloading model", p.fractionCompleted)
+                    }
+                }
+            )
+            progress?("loading model", 0.98)
+            let config = WhisperKitConfig(
+                modelFolder: folder.path,
+                verbose: false,
+                logLevel: .error,
+                prewarm: true,
+                load: true,
+                download: false
+            )
+            return try await WhisperKit(config)
+        }
+        loadingTask = task
+        do {
+            let pipe = try await task.value
+            cached = pipe
+            loadingTask = nil
+            return pipe
+        } catch {
+            loadingTask = nil
+            throw error
         }
     }
-}
 
-private enum TranscriptionError: LocalizedError {
-    case notAuthorized
-    case unavailable
+    /// Strips WhisperKit special tokens like `<|en|>`, `<|0.00|>`, `<|notimestamps|>`,
+    /// `<|endoftext|>`, etc. from segment text.
+    private static func cleanText(_ raw: String) -> String {
+        let withoutTokens = raw.replacingOccurrences(
+            of: #"<\|[^|]*\|>"#,
+            with: "",
+            options: .regularExpression
+        )
+        return withoutTokens.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 
-    var errorDescription: String? {
-        switch self {
-        case .notAuthorized: return "Speech recognition permission was denied."
-        case .unavailable:   return "Speech recognition is not available on this device."
+    enum TranscriptionError: LocalizedError {
+        case noAudio
+        var errorDescription: String? {
+            switch self {
+            case .noAudio: return "No transcribable audio detected in the recording."
+            }
         }
     }
 }
