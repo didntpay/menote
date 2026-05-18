@@ -10,8 +10,8 @@ struct MenoteApp: App {
                 .frame(minWidth: 700, minHeight: 480)
         }
         .windowStyle(.titleBar)
-        .windowToolbarStyle(.unified)
-        .defaultSize(width: 860, height: 560)
+        .windowToolbarStyle(.unifiedCompact(showsTitle: true))
+        .defaultSize(width: 900, height: 620)
         .commands {
             CommandGroup(replacing: .newItem) {}   // hide File > New
         }

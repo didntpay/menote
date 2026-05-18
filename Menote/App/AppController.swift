@@ -42,7 +42,7 @@ final class AppController: ObservableObject {
         self.store = store
         self.recorder = RecorderController(store: store)
         self.notes = NotesController(store: store)
-        self.recentMeetings = store.fetchRecent()
+        self.recentMeetings = store.fetchRecent(limit: 100)
 
         // Forward only the controller-level changes (state transitions) so views
         // observing AppController re-render on those. High-frequency meter updates
@@ -155,7 +155,7 @@ final class AppController: ObservableObject {
                 startedAt: session.startedAt
             )
 
-            recentMeetings = store.fetchRecent()
+            recentMeetings = store.fetchRecent(limit: 100)
             notes.open(record)
             appState = .idle
             flashNotesReady()

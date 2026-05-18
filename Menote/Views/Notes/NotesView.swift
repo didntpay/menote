@@ -2,56 +2,27 @@ import SwiftUI
 
 struct NotesView: View {
     @ObservedObject var controller: NotesController
-    @State private var keyPointsExpanded = false
-    @State private var transcriptExpanded = false
 
     var body: some View {
         ScrollView {
             if let meeting = controller.selectedMeeting, let notes = controller.notes {
-                VStack(alignment: .leading, spacing: 0) {
-                    NoteHeader(meeting: meeting, notes: notes)
-
-                    Divider().overlay(AppTheme.border).padding(.horizontal, AppTheme.padding)
-
-                    ActionItemsSection(
-                        items: notes.actionItems,
-                        onToggle: { controller.toggleActionItem(id: $0) }
-                    )
-
-                    Divider().overlay(AppTheme.border).padding(.horizontal, AppTheme.padding)
-
-                    SummarySection(text: notes.summary)
-
-                    Divider().overlay(AppTheme.borderDashed).padding(.horizontal, AppTheme.padding)
-
-                    CollapsibleSection(
-                        title: "Key points",
-                        badge: "\(notes.keyPoints.count)",
-                        isExpanded: $keyPointsExpanded
-                    ) {
-                        VStack(alignment: .leading, spacing: 6) {
-                            ForEach(Array(notes.keyPoints.enumerated()), id: \.offset) { _, pt in
-                                HStack(alignment: .top, spacing: 8) {
-                                    Text("·").foregroundColor(AppTheme.textTertiary)
-                                    Text(pt).font(AppTheme.body).foregroundColor(AppTheme.text)
-                                }
-                            }
-                        }
-                        .padding(.horizontal, AppTheme.padding)
-                        .padding(.bottom, AppTheme.padding)
-                    }
-
-                    if let transcript = controller.transcript {
-                        Divider().overlay(AppTheme.borderDashed).padding(.horizontal, AppTheme.padding)
-                        CollapsibleSection(
-                            title: "Transcript",
-                            badge: meeting.formattedDuration,
-                            isExpanded: $transcriptExpanded
-                        ) {
-                            TranscriptSection(segments: transcript.segments)
+                HStack(alignment: .top, spacing: 0) {
+                    VStack(alignment: .leading, spacing: 24) {
+                        NoteHeader(meeting: meeting, notes: notes)
+                        ActionItemsCard(
+                            items: notes.actionItems,
+                            onToggle: { controller.toggleActionItem(id: $0) }
+                        )
+                        SummarySection(text: notes.summary)
+                        if !notes.keyPoints.isEmpty {
+                            KeyPointsSection(points: notes.keyPoints)
                         }
                     }
+                    .frame(maxWidth: 720, alignment: .leading)
+                    Spacer(minLength: 0)
                 }
+                .padding(.horizontal, 40)
+                .padding(.vertical, 32)
             } else {
                 Text("No meeting selected")
                     .font(AppTheme.body)
@@ -59,170 +30,203 @@ struct NotesView: View {
                     .padding(40)
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .paperBackground()
+        .background(AppTheme.background)
     }
 }
 
-// MARK: - Sub-views (pure display, zero business logic)
-
-#Preview("Notes — with meeting") {
-    let c = NotesController(
-        meeting: MeetingRecord(
-            id: "1", title: "Q2 Roadmap Review",
-            startedAt: .init(timeIntervalSinceNow: -3600), durationSeconds: 2538,
-            audioPath: "", transcriptPath: "", notesPath: ""
-        ),
-        notes: NotesData(
-            title: "Q2 Roadmap Review",
-            summary: "The team aligned on shipping the notes editor in the next sprint. Diarization was pushed to v1.2.",
-            keyPoints: ["Editor blocked on schema migration", "WhisperKit small.en gives acceptable accuracy"],
-            actionItems: [
-                ActionItem(text: "Share onboarding spec", owner: "Maya", due: "by Tue", done: false),
-                ActionItem(text: "Scope migration ticket", owner: "Ravi", due: "this sprint", done: false),
-                ActionItem(text: "Schedule follow-up", owner: nil, due: nil, done: true)
-            ]
-        ),
-        transcript: TranscriptData(language: "en", segments: [
-            TranscriptSegment(start: 0, end: 4.2, text: "Thanks everyone for joining.", speakerId: nil),
-            TranscriptSegment(start: 4.2, end: 9.8, text: "Let's kick off with the roadmap.", speakerId: nil)
-        ])
-    )
-    return NotesView(controller: c)
-}
+// MARK: - Header
 
 private struct NoteHeader: View {
     let meeting: MeetingRecord
     let notes: NotesData
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 10) {
             Text(notes.title)
-                .font(AppTheme.headingFont(size: 24))
+                .font(AppTheme.titleFont(size: 30))
                 .foregroundColor(AppTheme.text)
-            HStack(spacing: 6) {
-                Text(meeting.formattedDate)
-                Text("·")
-                Text(meeting.formattedDuration)
+                .fixedSize(horizontal: false, vertical: true)
+
+            HStack(spacing: 14) {
+                Text(meeting.formattedMetaDate)
+                Text(meeting.formattedMinutes)
+
                 let open = notes.actionItems.filter { !$0.done }.count
-                if open > 0 { Text("·"); Text("\(open) to do") }
+                if open > 0 {
+                    Pill(text: "\(open) action item\(open == 1 ? "" : "s")")
+                }
             }
-            .font(AppTheme.mono)
-            .foregroundColor(AppTheme.textTertiary)
+            .font(AppTheme.bodySmall)
+            .foregroundColor(AppTheme.textSecondary)
         }
-        .padding(AppTheme.padding)
     }
 }
 
-private struct ActionItemsSection: View {
+// MARK: - Action items card
+
+private struct ActionItemsCard: View {
     let items: [ActionItem]
     let onToggle: (String) -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            HStack {
-                Text("Action items").font(AppTheme.body.weight(.semibold))
+            HStack(spacing: 8) {
+                Image(systemName: "checkmark.circle")
+                    .font(.system(size: 13))
+                    .foregroundColor(AppTheme.textSecondary)
+                Text("Action items")
+                    .font(AppTheme.bodySemibold)
+                    .foregroundColor(AppTheme.text)
                 Spacer()
                 let done = items.filter(\.done).count
-                Text("\(done) of \(items.count)")
+                Text("\(done) of \(items.count) done")
                     .font(AppTheme.monoSmall)
                     .foregroundColor(AppTheme.textTertiary)
             }
-            .padding(.horizontal, AppTheme.padding)
-            .padding(.vertical, 12)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 14)
 
-            ForEach(items) { item in
-                HStack(alignment: .top, spacing: 10) {
-                    Button { onToggle(item.id) } label: {
-                        Image(systemName: item.done ? "checkmark.circle.fill" : "circle")
-                            .foregroundColor(item.done ? AppTheme.doneGreen : AppTheme.border)
-                            .font(.system(size: 16))
-                    }
-                    .buttonStyle(.plain)
-                    .padding(.top, 1)
+            Divider().overlay(AppTheme.border)
 
-                    VStack(alignment: .leading, spacing: 3) {
-                        Text(item.text)
-                            .font(AppTheme.body)
-                            .foregroundColor(item.done ? AppTheme.textSecondary : AppTheme.text)
-                            .strikethrough(item.done, color: AppTheme.textTertiary)
-                        HStack(spacing: 6) {
-                            if let o = item.owner { Text(o) }
-                            if let d = item.due   { Text("·"); Text(d) }
-                        }
-                        .font(AppTheme.monoSmall)
-                        .foregroundColor(AppTheme.textTertiary)
+            VStack(spacing: 0) {
+                ForEach(Array(items.enumerated()), id: \.element.id) { idx, item in
+                    ActionItemRow(item: item, onToggle: { onToggle(item.id) })
+                    if idx < items.count - 1 {
+                        Divider().overlay(AppTheme.border.opacity(0.6))
+                            .padding(.leading, 46)
                     }
-                    Spacer()
                 }
-                .padding(.horizontal, AppTheme.padding)
-                .padding(.vertical, 7)
             }
         }
+        .card()
     }
 }
+
+private struct ActionItemRow: View {
+    let item: ActionItem
+    let onToggle: () -> Void
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 12) {
+            CheckboxButton(isOn: item.done, action: onToggle)
+                .padding(.top, 1)
+
+            VStack(alignment: .leading, spacing: 3) {
+                Text(item.text)
+                    .font(AppTheme.bodyMedium)
+                    .foregroundColor(item.done ? AppTheme.textTertiary : AppTheme.text)
+                    .strikethrough(item.done, color: AppTheme.textTertiary)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                let meta = [item.owner, item.due].compactMap { $0 }
+                if !meta.isEmpty {
+                    HStack(spacing: 6) {
+                        ForEach(Array(meta.enumerated()), id: \.offset) { i, str in
+                            if i > 0 { Text("·") }
+                            Text(str)
+                        }
+                    }
+                    .font(AppTheme.bodySmall)
+                    .foregroundColor(AppTheme.textTertiary)
+                }
+            }
+
+            Spacer()
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+    }
+}
+
+private struct CheckboxButton: View {
+    let isOn: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 4, style: .continuous)
+                    .strokeBorder(isOn ? AppTheme.text : AppTheme.borderStrong, lineWidth: 1.4)
+                    .frame(width: 18, height: 18)
+                if isOn {
+                    RoundedRectangle(cornerRadius: 4, style: .continuous)
+                        .fill(AppTheme.text)
+                        .frame(width: 18, height: 18)
+                    Image(systemName: "checkmark")
+                        .font(.system(size: 10, weight: .bold))
+                        .foregroundColor(.white)
+                }
+            }
+        }
+        .buttonStyle(.plain)
+    }
+}
+
+// MARK: - Summary
 
 private struct SummarySection: View {
     let text: String
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Summary").font(AppTheme.body.weight(.semibold))
-            Text(text).font(AppTheme.body).foregroundColor(AppTheme.text)
+        VStack(alignment: .leading, spacing: 10) {
+            SectionLabel(text: "Summary")
+            Text(text)
+                .font(AppTheme.body)
+                .foregroundColor(AppTheme.text)
+                .lineSpacing(4)
                 .fixedSize(horizontal: false, vertical: true)
         }
-        .padding(AppTheme.padding)
     }
 }
 
-private struct TranscriptSection: View {
-    let segments: [TranscriptSegment]
+// MARK: - Key points
+
+private struct KeyPointsSection: View {
+    let points: [String]
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            ForEach(Array(segments.enumerated()), id: \.offset) { _, seg in
-                HStack(alignment: .top, spacing: 10) {
-                    Text(formatTime(seg.start))
-                        .font(AppTheme.monoSmall)
-                        .foregroundColor(AppTheme.textTertiary)
-                        .frame(width: 38, alignment: .trailing)
-                    Text(seg.text)
-                        .font(AppTheme.bodySmall)
-                        .foregroundColor(AppTheme.text)
+        VStack(alignment: .leading, spacing: 10) {
+            SectionLabel(text: "Key points")
+            VStack(alignment: .leading, spacing: 8) {
+                ForEach(Array(points.enumerated()), id: \.offset) { _, point in
+                    HStack(alignment: .top, spacing: 10) {
+                        Text("•")
+                            .foregroundColor(AppTheme.textTertiary)
+                        Text(point)
+                            .font(AppTheme.body)
+                            .foregroundColor(AppTheme.text)
+                            .lineSpacing(3)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
                 }
             }
         }
-        .padding(.horizontal, AppTheme.padding)
-        .padding(.bottom, AppTheme.padding)
-    }
-
-    private func formatTime(_ s: Double) -> String {
-        String(format: "%d:%02d", Int(s) / 60, Int(s) % 60)
     }
 }
 
-private struct CollapsibleSection<Content: View>: View {
-    let title: String
-    let badge: String
-    @Binding var isExpanded: Bool
-    @ViewBuilder let content: () -> Content
+// MARK: - Preview
 
-    var body: some View {
-        VStack(spacing: 0) {
-            Button {
-                withAnimation(.easeInOut(duration: 0.2)) { isExpanded.toggle() }
-            } label: {
-                HStack {
-                    Image(systemName: isExpanded ? "chevron.down" : "chevron.right")
-                        .font(.system(size: 10, weight: .semibold))
-                        .foregroundColor(AppTheme.textTertiary)
-                    Text(title).font(AppTheme.body.weight(.semibold))
-                    Spacer()
-                    Text(badge).font(AppTheme.monoSmall).foregroundColor(AppTheme.textTertiary)
-                }
-                .padding(.horizontal, AppTheme.padding)
-                .padding(.vertical, 12)
-            }
-            .buttonStyle(.plain)
-            if isExpanded { content() }
-        }
-    }
+#Preview("Notes — full") {
+    let c = NotesController(
+        meeting: MeetingRecord(
+            id: "1", title: "Roadmap review · Q2",
+            startedAt: .init(timeIntervalSinceNow: -3600), durationSeconds: 2538,
+            audioPath: "", transcriptPath: "", notesPath: ""
+        ),
+        notes: NotesData(
+            title: "Roadmap review · Q2",
+            summary: "The team aligned on onboarding rewrite as Q2's top priority. Engineering needs about three weeks of migration runway before screen work can start; Maya will own the spec and circulate it by Tuesday. A follow-up review is scheduled for May 28 to confirm scope.",
+            keyPoints: [
+                "Onboarding rewrite is the Q2 priority — must ship before July",
+                "Engineering needs ~3 weeks of migration runway before screens",
+                "Maya owns the onboarding spec; due Tuesday"
+            ],
+            actionItems: [
+                ActionItem(text: "Share onboarding spec", owner: "Maya", due: "by Tue", done: false),
+                ActionItem(text: "Scope migration ticket", owner: "Ravi", due: "this sprint", done: false),
+                ActionItem(text: "Schedule follow-up review", owner: "auto", due: "invite sent", done: true)
+            ]
+        ),
+        transcript: nil
+    )
+    return NotesView(controller: c)
+        .frame(width: 760, height: 720)
 }
