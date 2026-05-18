@@ -1,0 +1,11 @@
+// Local.xcconfig.example — checked into git as a template.
+//
+// To build Menote on your machine:
+//   1. Copy this file to `Local.xcconfig` (which is gitignored).
+//   2. Fill in your own Apple Developer Team ID below.
+//      - Free option: sign in to Xcode → Preferences → Accounts with any Apple ID,
+//        then run `security find-identity -p codesigning -v` in Terminal —
+//        the parenthesized 10-char code is your Team ID.
+//   3. Run `xcodegen generate` (or rebuild in Xcode) and you're set.
+
+DEVELOPMENT_TEAM = YOUR_TEAM_ID

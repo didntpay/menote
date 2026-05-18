@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02F918F54749E4702D6082BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7024A03A88F0F55014837D62 /* Assets.xcassets */; };
 		03AB864B42A534997E2F75E2 /* MenoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FBEEE291922ED41412B237 /* MenoteApp.swift */; };
 		0A4A27490265088AF101B4D8 /* CLAUDE.md in Resources */ = {isa = PBXBuildFile; fileRef = A5483D683ECF11ED2D910F42 /* CLAUDE.md */; };
 		1BBA61DFCCA6FDE9D22246A2 /* KeyboardShortcutNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540D42C329579B09839520C3 /* KeyboardShortcutNames.swift */; };
@@ -52,6 +53,7 @@
 		59DB92AEF8644A674650EFC3 /* NotesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesController.swift; sourceTree = "<group>"; };
 		64FBEEE291922ED41412B237 /* MenoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenoteApp.swift; sourceTree = "<group>"; };
 		66D4D35D24E23ED5A83BA68E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		7024A03A88F0F55014837D62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		834D92C6D9D405164C4EFABC /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		9955E8A36884B8B212FE0EE2 /* Transcriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transcriber.swift; sourceTree = "<group>"; };
 		9BD6DB68F4C9513296824E06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 		F103AFF162403D04A83449BC /* WhisperKitTranscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperKitTranscriber.swift; sourceTree = "<group>"; };
 		F1DCF2456A839DDF7941F2CF /* NotesGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesGenerator.swift; sourceTree = "<group>"; };
 		FEA488378821AA12ACCE54F9 /* Menote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Menote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		"TEMP_686719D2-6440-4C0A-83A4-38FF009499F6" /* Local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +207,7 @@
 		A0A78586D4EBE0AC09DDF3AA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7024A03A88F0F55014837D62 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -279,6 +283,14 @@
 			path = Notes;
 			sourceTree = "<group>";
 		};
+		"TEMP_19081D5C-4409-48E1-AB6B-5FCE761AF56D" /* granolap */ = {
+			isa = PBXGroup;
+			children = (
+				"TEMP_686719D2-6440-4C0A-83A4-38FF009499F6" /* Local.xcconfig */,
+			);
+			path = granolap;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -313,6 +325,7 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					BD3BEE230D2715A2CBA293D4 = {
+						DevelopmentTeam = UA7BCUSWFY;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -345,6 +358,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02F918F54749E4702D6082BB /* Assets.xcassets in Resources */,
 				0A4A27490265088AF101B4D8 /* CLAUDE.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,12 +403,12 @@
 /* Begin XCBuildConfiguration section */
 		5858670E2EE18F618BEFFFB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = "TEMP_686719D2-6440-4C0A-83A4-38FF009499F6" /* Local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Menote/Menote.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 3WQ45D7894;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Menote/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -530,12 +544,12 @@
 		};
 		B522ACED37FD27F26A6B5DAA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = "TEMP_686719D2-6440-4C0A-83A4-38FF009499F6" /* Local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Menote/Menote.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 3WQ45D7894;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Menote/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

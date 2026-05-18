@@ -20,7 +20,11 @@ build/
 .build/
 .swiftpm/
 Packages/
-Package.resolved
+# Package.resolved IS committed for an app project (reproducible SPM versions across machines).
+
+# Per-developer signing settings (DEVELOPMENT_TEAM, etc.)
+# Each developer copies Local.xcconfig.example to Local.xcconfig with their team ID.
+Local.xcconfig
 
 # Claude Code session files
 .claude/
