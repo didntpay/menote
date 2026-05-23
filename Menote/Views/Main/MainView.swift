@@ -102,30 +102,7 @@ private struct SidebarView: View {
 
             Divider().overlay(AppTheme.border)
 
-            // Settings + Import footer
-            HStack(spacing: 12) {
-                Spacer()
-                Button { controller.importAudioFile() } label: {
-                    Label("Import", systemImage: "square.and.arrow.down")
-                        .font(AppTheme.bodySmall)
-                        .foregroundColor(AppTheme.textSecondary)
-                }
-                .buttonStyle(.plain)
-                .help("Run an audio file (mp3, m4a, wav…) through the transcribe → notes pipeline.")
-
-                Text("·")
-                    .font(AppTheme.bodySmall)
-                    .foregroundColor(AppTheme.textTertiary)
-
-                SettingsLink {
-                    Label("Settings", systemImage: "gearshape")
-                        .font(AppTheme.bodySmall)
-                        .foregroundColor(AppTheme.textSecondary)
-                }
-                .buttonStyle(.plain)
-                Spacer()
-            }
-            .padding(.vertical, 10)
+            MenoteFooter(style: .labeled, onImport: { controller.importAudioFile() })
         }
         .background(AppTheme.sidebar.ignoresSafeArea())
         .scrollContentBackground(.hidden)

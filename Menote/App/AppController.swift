@@ -71,11 +71,19 @@ final class AppController: ObservableObject {
         }
     }
 
-    func startRecording() {
+    /// Side-effecting precondition check: returns `false` and parks `appState`
+    /// in `.error` when the user has no API key configured. Use at the top of
+    /// any flow that will eventually hit Claude.
+    private func requireAPIKey() -> Bool {
         guard hasAPIKey else {
             appState = .error("No Anthropic API key — add one in Settings.")
-            return
+            return false
         }
+        return true
+    }
+
+    func startRecording() {
+        guard requireAPIKey() else { return }
         guard recorder.hasMicPermission() else {
             if AVAuthorizationStatus.notDetermined == AVCaptureDevice.authorizationStatus(for: .audio) {
                 recorder.requestMicPermission { granted in
@@ -112,10 +120,7 @@ final class AppController: ObservableObject {
     /// live recordings. Lets us benchmark the current pipeline on real
     /// audio before optimizing for long sessions.
     func importAudioFile() {
-        guard hasAPIKey else {
-            appState = .error("No Anthropic API key — add one in Settings.")
-            return
-        }
+        guard requireAPIKey() else { return }
         guard case .idle = appState, !recorder.state.isActive else { return }
 
         let panel = NSOpenPanel()
