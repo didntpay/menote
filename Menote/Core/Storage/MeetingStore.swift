@@ -37,14 +37,23 @@ final class MeetingStore {
         audioURL: URL,
         transcript: TranscriptData,
         notes: NotesData,
+        metrics: PipelineMetrics?,
         durationSeconds: Int,
-        startedAt: Date
+        startedAt: Date,
+        imported: Bool
     ) throws -> MeetingRecord {
         let transcriptURL = sessionDir.appendingPathComponent("transcript.json")
         let notesURL      = sessionDir.appendingPathComponent("notes.json")
 
         try encoder.encode(transcript).write(to: transcriptURL)
         try encoder.encode(notes).write(to: notesURL)
+
+        var metricsRelative: String?
+        if let metrics {
+            let metricsURL = sessionDir.appendingPathComponent("metrics.json")
+            try encoder.encode(metrics).write(to: metricsURL)
+            metricsRelative = relativePath(metricsURL)
+        }
 
         let record = MeetingRecord(
             id: id,
@@ -53,7 +62,9 @@ final class MeetingStore {
             durationSeconds: durationSeconds,
             audioPath: relativePath(audioURL),
             transcriptPath: relativePath(transcriptURL),
-            notesPath: relativePath(notesURL)
+            notesPath: relativePath(notesURL),
+            metricsPath: metricsRelative,
+            imported: imported
         )
 
         var index = loadIndex()
@@ -78,6 +89,15 @@ final class MeetingStore {
         let url = appSupport.appendingPathComponent(record.transcriptPath)
         let data = try Data(contentsOf: url)
         return try decoder.decode(TranscriptData.self, from: data)
+    }
+
+    /// Returns nil for older records that pre-date metrics capture, or if the
+    /// file is missing/unreadable. Never throws — metrics are non-critical.
+    func loadMetrics(for record: MeetingRecord) -> PipelineMetrics? {
+        guard let rel = record.metricsPath else { return nil }
+        let url = appSupport.appendingPathComponent(rel)
+        guard let data = try? Data(contentsOf: url) else { return nil }
+        return try? decoder.decode(PipelineMetrics.self, from: data)
     }
 
     // MARK: - Action item toggle

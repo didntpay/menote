@@ -41,16 +41,27 @@ struct DropdownView: View {
 
             Divider().overlay(AppTheme.border)
 
-            HStack {
-                Spacer()
+            HStack(spacing: 14) {
+                Button { controller.importAudioFile() } label: {
+                    Text("Import audio…")
+                        .font(AppTheme.bodySmall)
+                        .foregroundColor(AppTheme.textSecondary)
+                }
+                .buttonStyle(.plain)
+                .help("Run an audio file (mp3, m4a, wav…) through the transcribe → notes pipeline.")
+
+                Text("·")
+                    .font(AppTheme.bodySmall)
+                    .foregroundColor(AppTheme.textTertiary)
+
                 SettingsLink {
                     Text("Settings")
                         .font(AppTheme.bodySmall)
                         .foregroundColor(AppTheme.textSecondary)
                 }
                 .buttonStyle(.plain)
-                Spacer()
             }
+            .frame(maxWidth: .infinity)
             .padding(.vertical, 8)
         }
         .frame(width: AppTheme.dropdownWidth)

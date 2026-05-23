@@ -4,10 +4,12 @@ struct ClaudeNotesGenerator: NotesGenerator {
 
     let apiKey: String
 
-    private let endpoint = URL(string: "https://api.anthropic.com/v1/messages")!
-    private let model = "claude-sonnet-4-6"
+    static let modelID = "claude-sonnet-4-6"
 
-    func generateNotes(from transcript: TranscriptData) async throws -> NotesData {
+    private let endpoint = URL(string: "https://api.anthropic.com/v1/messages")!
+    private var model: String { Self.modelID }
+
+    func generateNotes(from transcript: TranscriptData) async throws -> GeneratedNotes {
         guard !apiKey.isEmpty else { throw GeneratorError.missingAPIKey }
 
         let prompt = buildPrompt(transcript: transcript.fullText)
@@ -84,7 +86,7 @@ struct ClaudeNotesGenerator: NotesGenerator {
         ]
     }
 
-    private func parseResponse(_ data: Data) throws -> NotesData {
+    private func parseResponse(_ data: Data) throws -> GeneratedNotes {
         guard let obj = try JSONSerialization.jsonObject(with: data) as? [String: Any],
               let content = obj["content"] as? [[String: Any]],
               let toolUse = content.first(where: { $0["type"] as? String == "tool_use" }),
@@ -95,11 +97,32 @@ struct ClaudeNotesGenerator: NotesGenerator {
 
         let inputData = try JSONSerialization.data(withJSONObject: input)
         let decoder = JSONDecoder()
+        let notes: NotesData
         do {
-            return try decoder.decode(NotesData.self, from: inputData)
+            notes = try decoder.decode(NotesData.self, from: inputData)
         } catch {
             let preview = String(data: inputData.prefix(300), encoding: .utf8) ?? ""
             throw GeneratorError.invalidResponse("decode failed: \(error.localizedDescription) — input: \(preview)")
         }
+
+        // `usage` is best-effort — if Anthropic ever drops or renames it we still
+        // return the notes, just without token counts.
+        var usage: TokenUsage?
+        if let raw = obj["usage"] as? [String: Any] {
+            usage = Self.parseUsage(raw)
+        }
+        return GeneratedNotes(notes: notes, usage: usage)
+    }
+
+    private static func parseUsage(_ raw: [String: Any]) -> TokenUsage? {
+        // Both fields are required by the Anthropic schema; bail if either is missing.
+        guard let input = raw["input_tokens"] as? Int,
+              let output = raw["output_tokens"] as? Int else { return nil }
+        return TokenUsage(
+            inputTokens: input,
+            outputTokens: output,
+            cacheCreationInputTokens: raw["cache_creation_input_tokens"] as? Int,
+            cacheReadInputTokens:     raw["cache_read_input_tokens"] as? Int
+        )
     }
 }
