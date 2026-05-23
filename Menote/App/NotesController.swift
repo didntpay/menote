@@ -7,6 +7,10 @@ final class NotesController: ObservableObject {
     @Published private(set) var selectedMeeting: MeetingRecord?
     @Published private(set) var notes: NotesData?
     @Published private(set) var transcript: TranscriptData?
+    @Published private(set) var metrics: PipelineMetrics?
+    /// Per-meeting banner dismissals. We re-show the metrics banner whenever
+    /// the user opens a different meeting, but stay dismissed within one view.
+    @Published var metricsBannerDismissedFor: String?
 
     private let store: MeetingStore
 
@@ -15,17 +19,29 @@ final class NotesController: ObservableObject {
     }
 
     // Convenience init for SwiftUI previews — bypasses disk.
-    init(meeting: MeetingRecord, notes: NotesData, transcript: TranscriptData? = nil) {
+    init(
+        meeting: MeetingRecord,
+        notes: NotesData,
+        transcript: TranscriptData? = nil,
+        metrics: PipelineMetrics? = nil
+    ) {
         self.store = MeetingStore()
         self.selectedMeeting = meeting
         self.notes = notes
         self.transcript = transcript
+        self.metrics = metrics
     }
 
     func open(_ meeting: MeetingRecord) {
         selectedMeeting = meeting
         notes = try? store.loadNotes(for: meeting)
         transcript = try? store.loadTranscript(for: meeting)
+        metrics = store.loadMetrics(for: meeting)
+        metricsBannerDismissedFor = nil
+    }
+
+    func dismissMetricsBanner() {
+        metricsBannerDismissedFor = selectedMeeting?.id
     }
 
     func toggleActionItem(id: String) {
@@ -38,6 +54,8 @@ final class NotesController: ObservableObject {
         selectedMeeting = nil
         notes = nil
         transcript = nil
+        metrics = nil
+        metricsBannerDismissedFor = nil
     }
 
 }

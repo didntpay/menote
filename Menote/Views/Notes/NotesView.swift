@@ -9,6 +9,14 @@ struct NotesView: View {
                 HStack(alignment: .top, spacing: 0) {
                     VStack(alignment: .leading, spacing: 24) {
                         NoteHeader(meeting: meeting, notes: notes)
+                        if let metrics = controller.metrics,
+                           controller.metricsBannerDismissedFor != meeting.id {
+                            MetricsBanner(
+                                metrics: metrics,
+                                imported: meeting.imported,
+                                onDismiss: { controller.dismissMetricsBanner() }
+                            )
+                        }
                         ActionItemsCard(
                             items: notes.actionItems,
                             onToggle: { controller.toggleActionItem(id: $0) }
@@ -59,6 +67,135 @@ private struct NoteHeader: View {
             .font(AppTheme.bodySmall)
             .foregroundColor(AppTheme.textSecondary)
         }
+    }
+}
+
+// MARK: - Metrics banner
+
+private struct MetricsBanner: View {
+    let metrics: PipelineMetrics
+    let imported: Bool
+    let onDismiss: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 8) {
+                Image(systemName: "stopwatch")
+                    .font(.system(size: 13))
+                    .foregroundColor(AppTheme.textSecondary)
+                Text(imported ? "Pipeline benchmark · imported audio" : "Pipeline benchmark")
+                    .font(AppTheme.bodySemibold)
+                    .foregroundColor(AppTheme.text)
+                Spacer()
+                Button(action: onDismiss) {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 10, weight: .semibold))
+                        .foregroundColor(AppTheme.textTertiary)
+                        .padding(6)
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .help("Dismiss")
+            }
+
+            HStack(spacing: 0) {
+                Metric(label: "audio",      value: Self.format(metrics.audioDurationSeconds))
+                Divider().frame(height: 28).overlay(AppTheme.border)
+                Metric(label: "transcribe", value: Self.format(metrics.transcribeSeconds))
+                Divider().frame(height: 28).overlay(AppTheme.border)
+                Metric(label: "claude",     value: Self.format(metrics.notesSeconds))
+                Divider().frame(height: 28).overlay(AppTheme.border)
+                Metric(label: "total",      value: Self.format(metrics.totalSeconds))
+                Divider().frame(height: 28).overlay(AppTheme.border)
+                Metric(label: "realtime ×", value: String(format: "%.2f", metrics.realtimeFactor))
+            }
+
+            if let usage = metrics.tokenUsage {
+                TokenRow(usage: usage)
+            }
+
+            if metrics.includedModelLoad {
+                Text("Includes one-time Whisper model load — re-run for a steady-state number.")
+                    .font(AppTheme.bodySmall)
+                    .foregroundColor(AppTheme.textTertiary)
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 14)
+        .card()
+    }
+
+    private static func format(_ seconds: Double) -> String {
+        if seconds >= 60 {
+            let m = Int(seconds) / 60
+            let s = Int(seconds) % 60
+            return String(format: "%d:%02d", m, s)
+        }
+        return String(format: "%.1fs", seconds)
+    }
+}
+
+/// Secondary row of token counts. Kept compact so it doesn't compete with
+/// the timing grid above.
+private struct TokenRow: View {
+    let usage: TokenUsage
+
+    var body: some View {
+        HStack(spacing: 14) {
+            Label("Claude tokens", systemImage: "number")
+                .font(AppTheme.bodySmall)
+                .foregroundColor(AppTheme.textSecondary)
+
+            tokenPair(label: "in",     value: usage.inputTokens)
+            tokenPair(label: "out",    value: usage.outputTokens)
+            tokenPair(label: "billed", value: usage.billedTokens)
+
+            if let read = usage.cacheReadInputTokens, read > 0 {
+                tokenPair(label: "cache read", value: read)
+            }
+            if let write = usage.cacheCreationInputTokens, write > 0 {
+                tokenPair(label: "cache write", value: write)
+            }
+
+            Spacer()
+        }
+    }
+
+    private func tokenPair(label: String, value: Int) -> some View {
+        HStack(spacing: 4) {
+            Text(label)
+                .font(AppTheme.monoSmall)
+                .foregroundColor(AppTheme.textTertiary)
+            Text(Self.fmt.string(from: NSNumber(value: value)) ?? "\(value)")
+                .font(.system(size: 12, weight: .semibold, design: .monospaced))
+                .foregroundColor(AppTheme.text)
+        }
+    }
+
+    private static let fmt: NumberFormatter = {
+        // `.decimal` already supplies a locale-appropriate grouping separator
+        // (e.g. "," in en-US, "." in de-DE, " " in fr-FR).
+        let f = NumberFormatter()
+        f.numberStyle = .decimal
+        return f
+    }()
+}
+
+private struct Metric: View {
+    let label: String
+    let value: String
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(label.uppercased())
+                .font(AppTheme.sectionLabel)
+                .tracking(0.6)
+                .foregroundColor(AppTheme.textTertiary)
+            Text(value)
+                .font(.system(size: 14, weight: .semibold, design: .monospaced))
+                .foregroundColor(AppTheme.text)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, 10)
     }
 }
 
@@ -225,7 +362,22 @@ private struct KeyPointsSection: View {
                 ActionItem(text: "Schedule follow-up review", owner: "auto", due: "invite sent", done: true)
             ]
         ),
-        transcript: nil
+        transcript: nil,
+        metrics: PipelineMetrics(
+            audioDurationSeconds: 2538,
+            transcribeSeconds: 142.3,
+            notesSeconds: 8.1,
+            totalSeconds: 151.7,
+            includedModelLoad: false,
+            transcribeModel: WhisperKitTranscriber.modelVariant,
+            notesModel: ClaudeNotesGenerator.modelID,
+            tokenUsage: TokenUsage(
+                inputTokens: 12_481,
+                outputTokens: 624,
+                cacheCreationInputTokens: nil,
+                cacheReadInputTokens: nil
+            )
+        )
     )
     return NotesView(controller: c)
         .frame(width: 760, height: 720)

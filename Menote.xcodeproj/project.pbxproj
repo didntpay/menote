@@ -11,6 +11,7 @@
 		03AB864B42A534997E2F75E2 /* MenoteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FBEEE291922ED41412B237 /* MenoteApp.swift */; };
 		0A4A27490265088AF101B4D8 /* CLAUDE.md in Resources */ = {isa = PBXBuildFile; fileRef = A5483D683ECF11ED2D910F42 /* CLAUDE.md */; };
 		1BBA61DFCCA6FDE9D22246A2 /* KeyboardShortcutNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540D42C329579B09839520C3 /* KeyboardShortcutNames.swift */; };
+		1CD89838D9063AE7BF577489 /* MenoteFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26569485818A575BAF58C698 /* MenoteFooter.swift */; };
 		1F89CAAFA76B6071DC5E1A04 /* NotesGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DCF2456A839DDF7941F2CF /* NotesGenerator.swift */; };
 		21A22FCB7961A67B7BFCB515 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060CFB3D984E8EEA046AC98A /* Models.swift */; };
 		26A349BB26840928E7FC7858 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF0CB53055B3F8E38830144 /* AppController.swift */; };
@@ -45,6 +46,7 @@
 		1EF0CB53055B3F8E38830144 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		211587A9BE52BDE6E1DB496F /* PermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsView.swift; sourceTree = "<group>"; };
 		22702A994D151807C10F6B17 /* Granolap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Granolap.entitlements; sourceTree = "<group>"; };
+		26569485818A575BAF58C698 /* MenoteFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenoteFooter.swift; sourceTree = "<group>"; };
 		3946E58506D789F998BFCFC4 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
 		3A94EBA8497C211E307F4C37 /* MeetingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingStore.swift; sourceTree = "<group>"; };
 		435D10A6AD4773609FCB0648 /* ClaudeNotesGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeNotesGenerator.swift; sourceTree = "<group>"; };
@@ -70,7 +72,7 @@
 		F103AFF162403D04A83449BC /* WhisperKitTranscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperKitTranscriber.swift; sourceTree = "<group>"; };
 		F1DCF2456A839DDF7941F2CF /* NotesGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesGenerator.swift; sourceTree = "<group>"; };
 		FEA488378821AA12ACCE54F9 /* Menote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Menote.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		"TEMP_686719D2-6440-4C0A-83A4-38FF009499F6" /* Local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
+		"TEMP_E5B5F9DC-2C3D-4F7A-9C62-B937787F3E39" /* Local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +230,14 @@
 			path = Recorder;
 			sourceTree = "<group>";
 		};
+		ABD8208B37B55CF93DDFA9C2 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				26569485818A575BAF58C698 /* MenoteFooter.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		ADEB5F5E3E43BD9107DB3E98 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +249,7 @@
 		AE1270A27DF619869EF62E27 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ABD8208B37B55CF93DDFA9C2 /* Common */,
 				3D189F6E740BC148A2C8D29B /* Dropdown */,
 				71D93318054BFD1B62DEA6CB /* Generation */,
 				AE22FEE75F1F6174BEB77232 /* Main */,
@@ -283,10 +294,10 @@
 			path = Notes;
 			sourceTree = "<group>";
 		};
-		"TEMP_19081D5C-4409-48E1-AB6B-5FCE761AF56D" /* granolap */ = {
+		"TEMP_511D5891-4017-48CE-9683-0D134F08BD9D" /* granolap */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_686719D2-6440-4C0A-83A4-38FF009499F6" /* Local.xcconfig */,
+				"TEMP_E5B5F9DC-2C3D-4F7A-9C62-B937787F3E39" /* Local.xcconfig */,
 			);
 			path = granolap;
 			sourceTree = "<group>";
@@ -382,6 +393,7 @@
 				2955B8B9727DAD55FB8A16AE /* MainView.swift in Sources */,
 				D5E541D5B6AB9B7CCB4949C4 /* MeetingStore.swift in Sources */,
 				03AB864B42A534997E2F75E2 /* MenoteApp.swift in Sources */,
+				1CD89838D9063AE7BF577489 /* MenoteFooter.swift in Sources */,
 				21A22FCB7961A67B7BFCB515 /* Models.swift in Sources */,
 				A780EE5CB33C7DDBC01B7B80 /* NotesController.swift in Sources */,
 				1F89CAAFA76B6071DC5E1A04 /* NotesGenerator.swift in Sources */,
@@ -403,7 +415,7 @@
 /* Begin XCBuildConfiguration section */
 		5858670E2EE18F618BEFFFB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_686719D2-6440-4C0A-83A4-38FF009499F6" /* Local.xcconfig */;
+			baseConfigurationReference = "TEMP_E5B5F9DC-2C3D-4F7A-9C62-B937787F3E39" /* Local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Menote/Menote.entitlements;
@@ -544,7 +556,7 @@
 		};
 		B522ACED37FD27F26A6B5DAA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_686719D2-6440-4C0A-83A4-38FF009499F6" /* Local.xcconfig */;
+			baseConfigurationReference = "TEMP_E5B5F9DC-2C3D-4F7A-9C62-B937787F3E39" /* Local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Menote/Menote.entitlements;

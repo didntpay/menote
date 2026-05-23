@@ -41,17 +41,7 @@ struct DropdownView: View {
 
             Divider().overlay(AppTheme.border)
 
-            HStack {
-                Spacer()
-                SettingsLink {
-                    Text("Settings")
-                        .font(AppTheme.bodySmall)
-                        .foregroundColor(AppTheme.textSecondary)
-                }
-                .buttonStyle(.plain)
-                Spacer()
-            }
-            .padding(.vertical, 8)
+            MenoteFooter(style: .compact, onImport: { controller.importAudioFile() })
         }
         .frame(width: AppTheme.dropdownWidth)
         .paperBackground()

@@ -10,6 +10,11 @@ struct MeetingRecord: Identifiable, Codable, Equatable {
     var audioPath: String        // relative to app support dir
     var transcriptPath: String
     var notesPath: String
+    /// Optional — only set for sessions whose generation pipeline was timed.
+    /// (Live recordings and imports both set it now; older records won't have it.)
+    var metricsPath: String?
+    /// Was this meeting produced from an imported audio file vs. a live recording?
+    var imported: Bool = false
     var createdAt: Date = Date()
     var updatedAt: Date = Date()
 
@@ -126,6 +131,52 @@ struct NotesData: Codable {
     var summary: String
     var keyPoints: [String]
     var actionItems: [ActionItem]
+}
+
+// MARK: - Pipeline metrics
+
+/// Token counts returned by the Anthropic API. Optional cache fields appear
+/// only when prompt caching is in play — left nil otherwise.
+struct TokenUsage: Codable, Equatable {
+    var inputTokens: Int
+    var outputTokens: Int
+    var cacheCreationInputTokens: Int?
+    var cacheReadInputTokens: Int?
+
+    /// Tokens billed at full rate (non-cached input + output). Excludes
+    /// `cacheReadInputTokens`, which Anthropic bills at a reduced rate and
+    /// reports as a separate field. Surface those alongside this number if
+    /// the consumer needs a true context-size estimate.
+    var billedTokens: Int { inputTokens + outputTokens }
+}
+
+/// Per-session timing data for the transcribe → notes pipeline.
+/// Captured for every generated meeting so users can compare runs.
+struct PipelineMetrics: Codable, Equatable {
+    /// Audio length in seconds, read from the file at pipeline time.
+    var audioDurationSeconds: Double
+    /// Wall-clock seconds spent inside `transcriber.transcribe(...)`. Includes
+    /// model download/load on first run — see `includedModelLoad`.
+    var transcribeSeconds: Double
+    /// Wall-clock seconds spent calling Claude.
+    var notesSeconds: Double
+    /// Total pipeline wall-clock seconds (transcribe + notes + persistence overhead).
+    var totalSeconds: Double
+    /// True if `transcribeSeconds` includes the one-time model download/load cost.
+    /// Skews the realtime factor on first run — surface this in the UI.
+    var includedModelLoad: Bool
+    var transcribeModel: String
+    var notesModel: String
+    /// Token usage from the Claude call. Nil if the response didn't include
+    /// a usage block (older records) or parsing failed — banner falls back
+    /// to "—" in that case.
+    var tokenUsage: TokenUsage?
+
+    /// audioDuration / totalSeconds — higher means faster than realtime.
+    var realtimeFactor: Double {
+        guard totalSeconds > 0 else { return 0 }
+        return audioDurationSeconds / totalSeconds
+    }
 }
 
 struct ActionItem: Codable, Identifiable {

@@ -102,18 +102,7 @@ private struct SidebarView: View {
 
             Divider().overlay(AppTheme.border)
 
-            // Settings link footer
-            HStack {
-                Spacer()
-                SettingsLink {
-                    Label("Settings", systemImage: "gearshape")
-                        .font(AppTheme.bodySmall)
-                        .foregroundColor(AppTheme.textSecondary)
-                }
-                .buttonStyle(.plain)
-                Spacer()
-            }
-            .padding(.vertical, 10)
+            MenoteFooter(style: .labeled, onImport: { controller.importAudioFile() })
         }
         .background(AppTheme.sidebar.ignoresSafeArea())
         .scrollContentBackground(.hidden)
