@@ -70,7 +70,7 @@
 		F103AFF162403D04A83449BC /* WhisperKitTranscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperKitTranscriber.swift; sourceTree = "<group>"; };
 		F1DCF2456A839DDF7941F2CF /* NotesGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesGenerator.swift; sourceTree = "<group>"; };
 		FEA488378821AA12ACCE54F9 /* Menote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Menote.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		"TEMP_686719D2-6440-4C0A-83A4-38FF009499F6" /* Local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
+		"TEMP_5F35F639-2E2E-4AA5-B74A-AF10A0394EF9" /* Local.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Local.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,10 +283,10 @@
 			path = Notes;
 			sourceTree = "<group>";
 		};
-		"TEMP_19081D5C-4409-48E1-AB6B-5FCE761AF56D" /* granolap */ = {
+		"TEMP_69E941BE-1819-4B6A-9DEC-45E76C484262" /* granolap */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_686719D2-6440-4C0A-83A4-38FF009499F6" /* Local.xcconfig */,
+				"TEMP_5F35F639-2E2E-4AA5-B74A-AF10A0394EF9" /* Local.xcconfig */,
 			);
 			path = granolap;
 			sourceTree = "<group>";
@@ -403,7 +403,7 @@
 /* Begin XCBuildConfiguration section */
 		5858670E2EE18F618BEFFFB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_686719D2-6440-4C0A-83A4-38FF009499F6" /* Local.xcconfig */;
+			baseConfigurationReference = "TEMP_5F35F639-2E2E-4AA5-B74A-AF10A0394EF9" /* Local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Menote/Menote.entitlements;
@@ -544,7 +544,7 @@
 		};
 		B522ACED37FD27F26A6B5DAA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_686719D2-6440-4C0A-83A4-38FF009499F6" /* Local.xcconfig */;
+			baseConfigurationReference = "TEMP_5F35F639-2E2E-4AA5-B74A-AF10A0394EF9" /* Local.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Menote/Menote.entitlements;
